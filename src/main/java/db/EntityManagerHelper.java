@@ -19,6 +19,7 @@ public class EntityManagerHelper {
     static {
         try {
             emf = Persistence.createEntityManagerFactory("db");
+            manager = emf.createEntityManager();
             //threadLocal = new ThreadLocal<>();
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,7 +37,13 @@ public class EntityManagerHelper {
 //            threadLocal.set(manager);
 //        }
 
-         manager = emf.createEntityManager();
+        if (emf == null){
+            emf = Persistence.createEntityManagerFactory("db");
+        }
+
+        if (manager == null){
+            manager = emf.createEntityManager();
+        }
 
         return manager;
     }
@@ -46,6 +53,7 @@ public class EntityManagerHelper {
 //        threadLocal.set(null);
 //        em.clear();
 //        em.close();
+
         EntityManager em = EntityManagerHelper.getEntityManager();
         em.clear();
         em.close();
@@ -55,7 +63,6 @@ public class EntityManagerHelper {
     public static void beginTransaction() {
         EntityManager em = EntityManagerHelper.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-
         if(!tx.isActive()){
             tx.begin();
         }
