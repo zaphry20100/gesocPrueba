@@ -10,14 +10,16 @@ import java.util.function.Supplier;
 
 public class EntityManagerHelper {
 
+    public static EntityManager manager;
+
     private static EntityManagerFactory emf;
 
-    private static ThreadLocal<EntityManager> threadLocal;
+    //private static ThreadLocal<EntityManager> threadLocal;
 
     static {
         try {
             emf = Persistence.createEntityManagerFactory("db");
-            threadLocal = new ThreadLocal<>();
+            //threadLocal = new ThreadLocal<>();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -28,19 +30,26 @@ public class EntityManagerHelper {
     }
 
     public static EntityManager getEntityManager() {
-        EntityManager manager = threadLocal.get();
-        if (manager == null || !manager.isOpen()) {
-            manager = emf.createEntityManager();
-            threadLocal.set(manager);
-        }
+//        EntityManager manager = threadLocal.get();
+//        if (manager == null || !manager.isOpen()) {
+//            manager = emf.createEntityManager();
+//            threadLocal.set(manager);
+//        }
+
+         manager = emf.createEntityManager();
+
         return manager;
     }
 
     public static void closeEntityManager() {
-        EntityManager em = threadLocal.get();
-        threadLocal.set(null);
+//        EntityManager em = threadLocal.get();
+//        threadLocal.set(null);
+//        em.clear();
+//        em.close();
+        EntityManager em = EntityManagerHelper.getEntityManager();
         em.clear();
         em.close();
+
     }
 
     public static void beginTransaction() {
