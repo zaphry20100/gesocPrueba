@@ -1,0 +1,3111 @@
+{
+	"info": {
+		"_postman_id": "507bd51a-7ac1-451a-a016-bb407311238b",
+		"name": "GeSoc Copy 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Entidades Juridicas [OK]",
+			"item": [
+				{
+					"name": "EntJur - Listar todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/dev/entJuridica",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"dev",
+								"entJuridica"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntJur - Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/dev/entJuridica/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"dev",
+								"entJuridica",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntJur - Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cuit\": 2,\n    \"codigoInscripcion\": 1,\n    \"cantidadEmpleados\": 5,\n    \"promedioVentas\": 3,\n    \"nombreFicticio\": \"EJ 1\",\n    \"actividad\": \"Servicios\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/dev/entJuridica",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"dev",
+								"entJuridica"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntJur - Modificar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idEntidadJuridica\": 2,\n    \"cuit\": 1234,\n    \"codigoInscripcion\": 1111,\n    \"cantidadEmpleados\": 5,\n    \"promedioVentas\": 3,\n    \"nombreFicticio\": \"EJ 1\",\n    \"actividad\": \"Comercio\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/dev/entJuridica",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"dev",
+								"entJuridica"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntJur - Existe",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/dev/entJuridica/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"dev",
+								"entJuridica",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntJur - Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/dev/entJuridica/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"dev",
+								"entJuridica",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Entidades Base [OK]",
+			"item": [
+				{
+					"name": "EntBase - Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/entBase/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"entBase",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntBase - Listar todos existentes (dev)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/dev/entBase",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"dev",
+								"entBase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntBase - Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/entBase/1/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"entBase",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntBase - Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descripcion\": \"Entidad Base 2\",\n    \"nombreFicticio\": \"asddddddddddddd\",\n    \"entidadjuridica\": {\"idEntidadJuridica\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/entBase/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"entBase",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntBase - Modificar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idEntidadBase\": 2,\n    \"descripcion\": \"aaaaaaaaaaaaaaaaaaaaaa\",\n    \"nombreFicticio\": \"aaaaaaa\",\n    \"entidadjuridica\": {\"idEntidadJuridica\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/entBase/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"entBase",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntBase - Existe",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/entBase/3/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"entBase",
+								"3",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntBase - Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/dev/entJuridica/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"dev",
+								"entJuridica",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Proveedores  [OK]",
+			"item": [
+				{
+					"name": "EntBase - Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/proveedor/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"proveedor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntBase - Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/proveedor/1/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"proveedor",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntBase - Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cuit\": 1123123,\n    \"nombre\": \"mi proveedor favorito\",\n    \"entidadjuridica\": {\"idEntidadJuridica\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/proveedor/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"proveedor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntBase - Modificar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idEntidadBase\": 2,\n    \"descripcion\": \"aaaaaaaaaaaaaaaaaaaaaa\",\n    \"nombreFicticio\": \"aaaaaaa\",\n    \"entidadjuridica\": {\"idEntidadJuridica\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/proveedor/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"proveedor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntBase - Existe",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/proveedor/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"proveedor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EntBase - Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/dev/proveedor/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"dev",
+								"proveedor",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Egresos  [OK]",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/egreso/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"egreso",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/egreso/1/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"egreso",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"importe\": 1234,\n    \"numeroInstrumentoPago\": 1123123111,\n    \"descripcion\": \"Elias2\",\n    \"items\": [\n        {   \n            \"idItem\": 1,\n            \"cantidad\": 3,\n            \"valorUnitario\": 2.35 \n        },\n        {   \n            \"idItem\": 2,\n            \"cantidad\": 3,\n            \"valorUnitario\": 2.35 \n        }\n    ],\n    \"usuario\": {\"idUsuario\": 1},\n    \"entidadjuridica\": {\"idEntidadJuridica\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/egreso/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"egreso",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear con presupuestos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"egreso\": {\n        \"importe\": 1234,\n        \"numeroInstrumentoPago\": 1123123111,\n        \"descripcion\": \"Elias2\",\n        \"usuario\": {\n            \"idUsuario\": 1\n        },\n        \"entidadjuridica\": {\n            \"idEntidadJuridica\": 1\n        }\n    },\n    \"presupuestos\": {\n        \"presupuestoElegido\": 0,\n        \"lista\": [\n            {\n                \"importe\": 1234,\n                \"detalles\": \"presupuesto elegido 2\"\n            },\n            {\n                \"importe\": 12341,\n                \"detalles\": \"aaa\"\n            },\n            {\n                \"importe\": 12342,\n                \"detalles\": \"aaa\"\n            }\n        ]\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/egresoPresupuesto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"egresoPresupuesto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear con presupuestos asignados",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"importe\": 1234,\n    \"numeroInstrumentoPago\": 1123123111,\n    \"descripcion\": \"Elias2\",\n    \"usuario\": {\"idUsuario\": 1},\n    \"entidadjuridica\": {\"idEntidadJuridica\": 1},\n    \"presupuestos\": [1, 2, 5],\n    \"presupuestoSeleccionado\": 5\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/egreso/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"egreso",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar Revisores",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"revisores\" : [\n        {\"idUsuario\":1},\n        {\"idUsuario\":2}\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/revisoresEgreso/1/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"revisoresEgreso",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idProfesional\": 5,\n    \"matricula\": 1234111,\n    \"nombre\": \"Elias\",\n    \"apellido\": \"r\",\n    \"activo\": false,\n    \"turnos\": [],\n    \"fichasmedicas\": []\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/entJuridica/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"entJuridica",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Existencia",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/egreso/1/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"egreso",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/egreso/1/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"egreso",
+								"1",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Ingresos  [OK]",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/ingreso/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"ingreso",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/ingreso/1/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"ingreso",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"importe\": 1234,\n    \"descripcion\": \"Elias2\",\n    \"entidadjuridica\": {\"idEntidadJuridica\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/ingreso/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"ingreso",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"descripcion\": \"112312dasdasdasd\",\n        \"idIngreso\": 1,\n        \"egresos\": [],\n        \"importe\": 1234\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/ingreso/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"ingreso",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Existencia",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/ingreso/1/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"ingreso",
+								"1",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/egreso/1/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"egreso",
+								"1",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Presupuestos  [OK]",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/presupuesto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"presupuesto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/presupuesto/1/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"presupuesto",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"importe\": 111.0,\n    \"detalles\": \"aaa\",\n    \"proveedor\": {\"idProveedor\": 1},\n    \"moneda\": {\"idMoneda\": 1},\n    \"items\":[\n        {\n            \"idItem\": 1, \n            \"cantidad\": 55,\n            \"valorUnitario\": 12.32\n        },\n        {\n            \"idItem\": 2, \n            \"cantidad\": 11,\n            \"valorUnitario\": 12.32\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/presupuesto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"presupuesto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idPresupuesto\": 1,\n    \"importe\": 1234,\n    \"detalles\": \"aaa\",\n    \"egreso\": {\"idEgreso\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/presupuesto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"presupuesto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Existencia",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/presupuesto/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"presupuesto",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/presupuesto/1/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"presupuesto",
+								"1",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Items [OK]",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/item/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"item",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/item/1/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"item",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"valorUnitario\": 35.0,\n    \"descripcion\": \"fanta\",\n    \"productoServicio\": \"Producto\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/item/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"item",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idProfesional\": 5,\n    \"matricula\": 1234111,\n    \"nombre\": \"Elias\",\n    \"apellido\": \"r\",\n    \"activo\": false,\n    \"turnos\": [],\n    \"fichasmedicas\": []\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/item/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"item",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Existencia",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/item/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"item",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/item/1/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"item",
+								"1",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Documentos Comerciales [OK]",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/docCom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"docCom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/docCom/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"docCom",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"numeroDocCom\": 1123123111,\n    \"path\": \"/asdsad/asdasd/asdsad\",\n    \"tipo\": \"PDF\",\n    \"egreso\" : {\"idEgreso\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/docCom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"docCom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idDocumentoComercial\": 1,\n    \"numeroDocCom\": 1123123111,\n    \"path\": \"/asdsad/asdasd/asdsad\",\n    \"tipo\": \"XLS\",\n    \"egreso\" : {\"idEgreso\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/docCom/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"docCom",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Existencia",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/docCom/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"docCom",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/docCom/1/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"docCom",
+								"1",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Mensajes [OK]",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/mensaje/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"mensaje",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/mensaje/1/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"mensaje",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"importe\": 1234,\n    \"contenido\": \"s\",\n    \"asunto\": \"asdasdasdasdasd\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/mensaje/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"mensaje",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idMensaje\": 1,\n    \"importe\": 1234,\n    \"contenido\": \"dd\",\n    \"asunto\": \"Elias2\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/mensaje/1/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"mensaje",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Existencia",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/mensaje/1/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"mensaje",
+								"1",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/mensaje/1/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"mensaje",
+								"1",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Usuarios [OK]",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/usuario/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"usuario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar mensajes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/leerMensajes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"leerMensajes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mandar mensajes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"importe\": 1234,\n    \"contenido\": \"s\",\n    \"asunto\": \"asdasdasdasdasd\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/mandarMensajes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"mandarMensajes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/usuario/1/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"usuario",
+								"1",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombreUsuario\": \"andrefer1\",\n    \"mail\": \"e@r.c\",\n    \"clave\": \"g4tos\",\n    \"rol\": {\"idRol\": 1},\n    \"entidadjuridica\": {\"idEntidadJuridica\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/usuario/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"usuario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idUsuario\": 1,\n    \"nombreUsuario\": \"andre\",\n    \"mail\": \"e@r.c\",\n    \"clave\": \"asd\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/usuario/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"usuario",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Existencia",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/usuario/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"usuario",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/usuario/1/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"usuario",
+								"1",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Rol",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/rol",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"rol"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/rol/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"rol",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descripcion\": \"admin\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/rol",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"rol"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Login Users",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": \"andrefer1\",\n    \"pass\": \"AAAAAAAAAAAAAAAAAAAAAEc0dG/JD8Pcysks9bU4xkvfXHcNtokXaFI=\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CategoriaEntidad [OK]",
+			"item": [
+				{
+					"name": "CatEnt - Crear CategoriasEntidad",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoriasEntidad\":[\r\n        {\"descripcion\":\"Micro\"},\r\n        {\"descripcion\":\"Pequeña\"},\r\n        {\"descripcion\":\"Mediana\"},\r\n        {\"descripcion\":\"Mediana - Tipo 1\"},\r\n        {\"descripcion\":\"Mediana - Tipo 2\"},\r\n        {\"descripcion\":\"OSC\"}\r\n    ] \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/dev/categoriasEntidad",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"dev",
+								"categoriasEntidad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CatEnt - Recategorizar entidad juridica",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEntidadJuridica\": 5,\r\n    \"empleados\": 123123123,\r\n    \"actividad\": \"Construcción\",\r\n    \"promedioActividad\": 755740001\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/recategorizar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"recategorizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CatEnt - Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/categoriaEntidad/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"categoriaEntidad",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Validacion Transparencia [OK]",
+			"item": [
+				{
+					"name": "Consultar estado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/ValidadorTransparencia/estado/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"ValidadorTransparencia",
+								"estado",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ejecutar validacion (Todos)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/ValidadorTransparencia/ejecutar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"ValidadorTransparencia",
+								"ejecutar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ejecutar validacion (1 Egreso)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/ValidadorTransparencia/ejecutar/1/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"ValidadorTransparencia",
+								"ejecutar",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Direcciones [OK - Falta ML]",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/direccion/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"direccion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/direccion/1/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"direccion",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"calle\": \"ruiz ogro\",\n    \"altura\": 21,\n    \"piso\": 22,\n    \"depto\":\"A1\",\n    \"entidadjuridica\": {\"idEntidadJuridica\": 2}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/direccion/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"direccion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idUsuario\": 1,\n    \"nombreUsuario\": \"andre\",\n    \"mail\": \"e@r.c\",\n    \"clave\": \"asd\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/direccion/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"direccion",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Existencia",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/direccion/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"direccion",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/direccion/1/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"direccion",
+								"1",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Configuracion EntJur [OK]",
+			"item": [
+				{
+					"name": "Mostrar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/configuracionEntidadJuridica/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"configuracionEntidadJuridica",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reemplazar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idConfig\": 8,\n    \"configEntidadJuridica\": {\n        \"CriterioCantidadPresupuestos\": \"2\",\n        \"CriterioMenorValor\": \"CRITERIO_MENOR_PRECIO\",\n        \"CriterioCompraDeUnPresupuesto\": \"si\"\n    },\n    \"entidadjuridica\": {\"idEntidadJuridica\":1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/configuracionEntidadJuridica",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"configuracionEntidadJuridica"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Criterios",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/criterios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"criterios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/criterios/1/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"criterios",
+								"1",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descripcion\": \"criterio dolar\",\n    \"entidadjuridica\": {\"idEntidadJuridica\": 1}\n    //,\"criterioPadre\": 4\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/criterios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"criterios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idProfesional\": 5,\n    \"matricula\": 1234111,\n    \"nombre\": \"Elias\",\n    \"apellido\": \"r\",\n    \"activo\": false,\n    \"turnos\": [],\n    \"fichasmedicas\": []\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/criterios/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"criterios",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Existencia",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/criterios/5/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"criterios",
+								"5",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/criterios/1/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"criterios",
+								"1",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Categorias",
+			"item": [
+				{
+					"name": "CategoriaEgreso",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"categoria\": {\"idCategoriaPresupuesto\": 1},\n    \"egreso\": {\"idEgreso\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/categoriasEgreso/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"categoriasEgreso",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CategoriaIngreso",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"categoria\": {\"idCategoriaPresupuesto\": 1},\n    \"ingreso\": {\"idIngreso\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/categoriasIngreso/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"categoriasIngreso",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CategoriaPrespuesto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"categoria\": {\"idCategoriaPresupuesto\": 1},\n   \"presupuesto\": {\"idPresupuesto\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/categoriasPresupuesto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"categoriasPresupuesto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/categorias/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"categorias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/categorias/1/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"categorias",
+								"1",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descripcion\": \"categoria proveedores preferenciales\"\n    ,\"entidadjuridica\": {\"idEntidadJuridica\": 1}\n    ,\"egreso\": {\"idEgreso\": 1}\n    ,\"criteriopresupuesto\": {\"idcriteriopresupuesto\": 1}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/categorias/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"categorias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idProfesional\": 5,\n    \"matricula\": 1234111,\n    \"nombre\": \"Elias\",\n    \"apellido\": \"r\",\n    \"activo\": false,\n    \"turnos\": [],\n    \"fichasmedicas\": []\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/categorias/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"categorias",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Existencia",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/categorias/5/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"categorias",
+								"5",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/categorias/1/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"categorias",
+								"1",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Entidades Basicas",
+			"item": [
+				{
+					"name": "MediosPago - Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"listaMediosdepago\":[\r\n        {\r\n            \"descripcion\": \"Efectivo\",\r\n            \"tipo\": \"efectivo\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Visa\",\r\n            \"tipo\": \"credit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Mastercard\",\r\n            \"tipo\": \"credit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"American Express\",\r\n            \"tipo\": \"credit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Diners Club International\",\r\n            \"tipo\": \"credit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Tarjeta Naranja\",\r\n            \"tipo\": \"credit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Tarjeta Nativa\",\r\n            \"tipo\": \"credit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Tarjeta Shopping\",\r\n            \"tipo\": \"credit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Tarjeta Cencosud\",\r\n            \"tipo\": \"credit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Tarjeta CMR MasterCard\",\r\n            \"tipo\": \"credit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Argencard\",\r\n            \"tipo\": \"credit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Cordial\",\r\n            \"tipo\": \"credit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Cordobesa\",\r\n            \"tipo\": \"credit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Cabal\",\r\n            \"tipo\": \"credit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Visa Débito\",\r\n            \"tipo\": \"debit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Maestro\",\r\n            \"tipo\": \"debit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Mastercard Débito\",\r\n            \"tipo\": \"debit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Cabal Débito\",\r\n            \"tipo\": \"debit_card\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Pago Fácil\",\r\n            \"tipo\": \"ticket\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"RapiPago\",\r\n            \"tipo\": \"ticket\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Provincia Pagos\",\r\n            \"tipo\": \"ticket\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Carga Virtual\",\r\n            \"tipo\": \"ticket\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Cobro Express\",\r\n            \"tipo\": \"ticket\",\r\n            \"estado\":true\r\n        },\r\n        {\r\n            \"descripcion\": \"Red Link\",\r\n            \"tipo\": \"atm\",\r\n            \"estado\":true\r\n        }\r\n    ]\r\n}\r\n\r\n \r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/medioPago",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"medioPago"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Moneda - Crear",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/moneda",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"moneda"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Items Basicos - Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEntidadJuridica\": 2,\r\n    \"empleados\": 590,\r\n    \"actividad\": \"Construcción\",\r\n    \"promedioActividad\": 755740001\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/recategorizar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"recategorizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rol (NO USAR) - Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEntidadJuridica\": 2,\r\n    \"empleados\": 590,\r\n    \"actividad\": \"Construcción\",\r\n    \"promedioActividad\": 755740001\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/recategorizar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"recategorizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Permiso (NO USAR) - Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEntidadJuridica\": 2,\r\n    \"empleados\": 590,\r\n    \"actividad\": \"Construcción\",\r\n    \"promedioActividad\": 755740001\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/recategorizar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"recategorizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MediosPago - Mostrar todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/medioPago",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"medioPago"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Moneda - Mostrar todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/mostrarMonedas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"mostrarMonedas"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Vinculador",
+			"item": [
+				{
+					"name": "Vinculador - Mostrar criterios de vinculacion",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/criteriosVinculacion/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"criteriosVinculacion",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vinculador - Vincular",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n        {\"criterioVinculacion\":\"Orden-Valor-PrimeroEgreso\",\r\n         \"cantAsignacionesEficaces\":2,\r\n          \"ordenamientoMayor\":true\r\n        },\r\n        {\"criterioVinculacion\":\"Fecha\",\r\n         \"cantAsignacionesEficaces\":2,\r\n          \"ordenamientoMayor\":true\r\n        }\r\n    ]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/gesoc/vincularOperaciones/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"vincularOperaciones",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vinculador - Consultar estado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/gesoc/consultarEstado/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"gesoc",
+								"consultarEstado",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

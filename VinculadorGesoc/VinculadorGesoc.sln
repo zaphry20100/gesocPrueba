@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinculadorGesoc", "VinculadorGesoc\VinculadorGesoc.csproj", "{423A9B70-AD66-4CDF-9654-C12E56B656E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{423A9B70-AD66-4CDF-9654-C12E56B656E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{423A9B70-AD66-4CDF-9654-C12E56B656E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{423A9B70-AD66-4CDF-9654-C12E56B656E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{423A9B70-AD66-4CDF-9654-C12E56B656E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {43B85E96-C014-4516-9BE5-7D81BED155AE}
+	EndGlobalSection
+EndGlobal
