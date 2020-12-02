@@ -10,17 +10,14 @@ import java.util.function.Supplier;
 
 public class EntityManagerHelper {
 
-    public static EntityManager manager;
-
     private static EntityManagerFactory emf;
 
-    //private static ThreadLocal<EntityManager> threadLocal;
+    private static ThreadLocal<EntityManager> threadLocal;
 
     static {
         try {
             emf = Persistence.createEntityManagerFactory("db");
-            manager = emf.createEntityManager();
-            //threadLocal = new ThreadLocal<>();
+            threadLocal = new ThreadLocal<>();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -31,38 +28,25 @@ public class EntityManagerHelper {
     }
 
     public static EntityManager getEntityManager() {
-//        EntityManager manager = threadLocal.get();
-//        if (manager == null || !manager.isOpen()) {
-//            manager = emf.createEntityManager();
-//            threadLocal.set(manager);
-//        }
-
-        if (emf == null){
-            emf = Persistence.createEntityManagerFactory("db");
-        }
-
-        if (manager == null){
+        EntityManager manager = threadLocal.get();
+        if (manager == null || !manager.isOpen()) {
             manager = emf.createEntityManager();
+            threadLocal.set(manager);
         }
-
         return manager;
     }
 
     public static void closeEntityManager() {
-//        EntityManager em = threadLocal.get();
-//        threadLocal.set(null);
-//        em.clear();
-//        em.close();
-
-        EntityManager em = EntityManagerHelper.getEntityManager();
+        EntityManager em = threadLocal.get();
+        threadLocal.set(null);
         em.clear();
         em.close();
-
     }
 
     public static void beginTransaction() {
         EntityManager em = EntityManagerHelper.getEntityManager();
         EntityTransaction tx = em.getTransaction();
+
         if(!tx.isActive()){
             tx.begin();
         }
