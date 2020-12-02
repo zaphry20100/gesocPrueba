@@ -23,7 +23,7 @@ public class Router {
 
     private static void configure() {
 
-        Spark.get("/hola",(r,q) -> {return "hola";});
+        Spark.get("/hola",(req, res) -> "SGSGSDGSDGSGD Heroku World");
 
         EntidadJuridicaRestController entidadJuridicaRestController = new EntidadJuridicaRestController();
         Spark.post("/dev/entJuridica", entidadJuridicaRestController::crear);                           // ok
