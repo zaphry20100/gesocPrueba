@@ -24,7 +24,7 @@
           <processTypes>
             <!-- Tell Heroku how to launch your application -->
             <!-- You might have to remove the ./ in front   -->
-            <web>java -jar target/TPA-GeSoc-0.1-jar-with-dependencies.jar target/*.war</web>
+            <web>java -jar target/TPA-GeSoc-0.1-jar-with-dependencies.jar </web>
           </processTypes>
         </configuration>
       </plugin>
