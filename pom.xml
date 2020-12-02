@@ -16,7 +16,7 @@
       <plugin>
         <groupId>com.heroku.sdk</groupId>
         <artifactId>heroku-maven-plugin</artifactId>
-        <version>0.4.4</version>
+        <version>1.1.3</version>
         <configuration>
           <jdkVersion>1.8</jdkVersion>
           <!-- Use your own application name -->
@@ -24,7 +24,7 @@
           <processTypes>
             <!-- Tell Heroku how to launch your application -->
             <!-- You might have to remove the ./ in front   -->
-            <web>web: java -jar target/TPA-GeSoc-0.0.1-SNAPSHOT-jar-with-dependencies.jar</web>
+            <web>java -jar target/TPA-GeSoc-0.1-jar-with-dependencies.jar target/*.war</web>
           </processTypes>
         </configuration>
       </plugin>
