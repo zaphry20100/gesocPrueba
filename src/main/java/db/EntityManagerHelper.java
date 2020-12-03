@@ -6,6 +6,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 
@@ -17,8 +19,24 @@ public class EntityManagerHelper {
 
     static {
         try {
-            emf = Persistence.createEntityManagerFactory("db");
+            //emf = Persistence.createEntityManagerFactory("db");
+            Map<String, String> properties = new HashMap<String, String>();
+            properties.put("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
+            properties.put("hibernate.connection.url", "jdbc:mysql://de1tmi3t63foh7fa.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/mt202zr9n0vdd7ho");
+            properties.put("hibernate.connection.username", "mmxsqb7gh3ot4pu3");
+            properties.put("hibernate.connection.password", "l3vm1ykn5vcc0plo");
+            properties.put("hibernate.connection.username", "mmxsqb7gh3ot4pu3");
+
+            properties.put("hibernate.show_sql", "true");
+            properties.put("hibernate.format_sql", "true");
+            properties.put("use_sql_comments", "true");
+            properties.put("hibernate.hbm2ddl.auto", "update");
+            properties.put("hibernate.archive.autodetection", "class");
+
+            emf = Persistence.createEntityManagerFactory("db", properties);
             manager = emf.createEntityManager();
+
+
             //threadLocal = new ThreadLocal<>();
         } catch (Exception e) {
             e.printStackTrace();
