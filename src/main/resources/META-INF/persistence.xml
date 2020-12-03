@@ -10,10 +10,8 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://mmxsqb7gh3ot4pu3:l3vm1ykn5vcc0plo@de1tmi3t63foh7fa.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/mt202zr9n0vdd7ho"/>
+            <property name="javax.persistence.jdbc.url" value=""/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <!--            <property name="hibernate.connection.username" value="mmxsqb7gh3ot4pu3" />-->
-            <!--            <property name="hibernate.connection.password" value="l3vm1ykn5vcc0plo" />-->
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />

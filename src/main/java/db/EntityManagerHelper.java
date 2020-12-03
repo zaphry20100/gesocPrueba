@@ -20,15 +20,15 @@ public class EntityManagerHelper {
     static {
         try {
 
-//            Map<String, String> env = System.getenv();
-//            Map<String, Object> configOverrides = new HashMap<String, Object>();
-//            for (String envName : env.keySet()) {
-//                if (envName.contains("JDBC_DATABASE_URL")) {
-//                    configOverrides.put("javax.persistence.jdbc.url", env.get(envName));
-//                }
-//            }
-//            emf = Persistence.createEntityManagerFactory("db", configOverrides);
-            emf = Persistence.createEntityManagerFactory("db");
+            Map<String, String> env = System.getenv();
+            Map<String, Object> configOverrides = new HashMap<String, Object>();
+            for (String envName : env.keySet()) {
+                if (envName.contains("JDBC_DATABASE_URL")) {
+                    configOverrides.put("javax.persistence.jdbc.url", env.get(envName));
+                }
+            }
+            emf = Persistence.createEntityManagerFactory("db", configOverrides);
+            //emf = Persistence.createEntityManagerFactory("db");
             manager = emf.createEntityManager();
 
 
@@ -45,15 +45,15 @@ public class EntityManagerHelper {
     public static EntityManager getEntityManager() {
         if (manager == null) {
 
-//            Map<String, String> env = System.getenv();
-//            Map<String, Object> configOverrides = new HashMap<String, Object>();
-//            for (String envName : env.keySet()) {
-//                if (envName.contains("JDBC_DATABASE_URL")) {
-//                    configOverrides.put("javax.persistence.jdbc.url", env.get(envName));
-//                }
-//            }
-//            emf = Persistence.createEntityManagerFactory("db", configOverrides);
-            emf = Persistence.createEntityManagerFactory("db");
+            Map<String, String> env = System.getenv();
+            Map<String, Object> configOverrides = new HashMap<String, Object>();
+            for (String envName : env.keySet()) {
+                if (envName.contains("JDBC_DATABASE_URL")) {
+                    configOverrides.put("javax.persistence.jdbc.url", env.get(envName));
+                }
+            }
+            emf = Persistence.createEntityManagerFactory("db", configOverrides);
+            // = Persistence.createEntityManagerFactory("db");
             manager = emf.createEntityManager();
 
         }
