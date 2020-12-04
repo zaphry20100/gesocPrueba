@@ -19,7 +19,6 @@ public class EntityManagerHelper {
 
     static {
         try {
-
             Map<String, String> env = System.getenv();
             Map<String, Object> configOverrides = new HashMap<String, Object>();
             for (String envName : env.keySet()) {
@@ -30,7 +29,6 @@ public class EntityManagerHelper {
             emf = Persistence.createEntityManagerFactory("db", configOverrides);
             //emf = Persistence.createEntityManagerFactory("db");
             manager = emf.createEntityManager();
-
 
             //threadLocal = new ThreadLocal<>();
         } catch (Exception e) {
