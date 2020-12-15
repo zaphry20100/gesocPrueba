@@ -12,8 +12,8 @@ import static spark.utils.urldecoding.UrlDecode.path;
 public class Router {
 
     public static void init() {
-        Spark.staticFileLocation("/public");
-        Spark.before((rq, rp) -> rp.header("Access-Control-Allow-Origin", "*"));
+//        Spark.staticFileLocation("/public");
+//        Spark.before((rq, rp) -> rp.header("Access-Control-Allow-Origin", "*"));
         Router.configure();
     }
 
