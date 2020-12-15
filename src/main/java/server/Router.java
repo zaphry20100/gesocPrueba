@@ -12,10 +12,6 @@ import static spark.utils.urldecoding.UrlDecode.path;
 public class Router {
 
     public static void init() {
-
-
-
-
 //        Spark.staticFileLocation("/public");
 //        Spark.before((rq, rp) -> rp.header("Access-Control-Allow-Origin", "*"));
         Router.configure();
@@ -24,7 +20,11 @@ public class Router {
     private static void configure() {
 
         Spark.get("/hola",(req, res) -> "SGSGSDGSDGSGD Heroku World");
+
         Spark.post("/hola",(req, res) -> "SGSGSDGSDGSGD Heroku World");
+
+        Spark.get("/chau",(req, res) -> "chauchis :D");
+
 
         EntidadJuridicaRestController entidadJuridicaRestController = new EntidadJuridicaRestController();
         Spark.post("/dev/entJuridica", entidadJuridicaRestController::crear);                           // ok
@@ -34,7 +34,6 @@ public class Router {
         Spark.get("/dev/entJuridica/:id", entidadJuridicaRestController::mostrar);                      // ok
         Spark.get("/dev/entJuridica", entidadJuridicaRestController::mostrarTodos);                     // ok
         Spark.post("/dev/entJuridica-realciones", entidadJuridicaRestController::crearRelacionesExt);
-
 
         // ABML para UI
         EntidadbaseRestController entidadbaseRestController = new EntidadbaseRestController();
