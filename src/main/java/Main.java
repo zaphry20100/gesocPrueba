@@ -26,13 +26,13 @@ public class Main {
         SchedulerFactory schedFact = new StdSchedulerFactory();
 
         try {
-            sched.shutdown();
-            sched = schedFact.getScheduler();
-
-            JobDetail job = JobBuilder.newJob(JobTick.class).withIdentity("myJob", "group1").usingJobData("jobSays", "Hello World!").usingJobData("myFloatValue", 3.141f).build();
-            Trigger trigger = TriggerBuilder.newTrigger().withIdentity("myTrigger", "group1").startNow().withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(30).repeatForever()).build();
-            sched.scheduleJob(job, trigger);
-            sched.start();
+//            
+//            sched = schedFact.getScheduler();
+//
+//            JobDetail job = JobBuilder.newJob(JobTick.class).withIdentity("myJob", "group1").usingJobData("jobSays", "Hello World!").usingJobData("myFloatValue", 3.141f).build();
+//            Trigger trigger = TriggerBuilder.newTrigger().withIdentity("myTrigger", "group1").startNow().withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(30).repeatForever()).build();
+//            sched.scheduleJob(job, trigger);
+//            sched.start();
 
         } catch (SchedulerException e) {
             e.printStackTrace();
