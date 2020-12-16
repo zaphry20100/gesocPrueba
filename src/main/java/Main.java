@@ -30,7 +30,7 @@ public class Main {
             sched = schedFact.getScheduler();
 
             JobDetail job = JobBuilder.newJob(JobTick.class).withIdentity("myJob", "group1").usingJobData("jobSays", "Hello World!").usingJobData("myFloatValue", 3.141f).build();
-            Trigger trigger = TriggerBuilder.newTrigger().withIdentity("myTrigger", "group1").startNow().withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(5).repeatForever()).build();
+            Trigger trigger = TriggerBuilder.newTrigger().withIdentity("myTrigger", "group1").startNow().withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(300).repeatForever()).build();
             sched.scheduleJob(job, trigger);
             sched.start();
 
