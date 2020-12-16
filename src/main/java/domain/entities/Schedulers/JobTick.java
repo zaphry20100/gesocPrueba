@@ -21,9 +21,10 @@ public class JobTick implements Job {
     public void execute(JobExecutionContext arg0) throws JobExecutionException {
         //System.out.println("This is the job A");
 
-//        System.out.println("Se esta validado por scheduler.");
-//        List<EntidadJuridica> entidadesJuridicas = FactoryRepositorio.get(EntidadJuridica.class).buscarTodos();
-//        entidadesJuridicas.forEach(x -> {
+        System.out.println("Se esta validado por scheduler.");
+        List<EntidadJuridica> entidadesJuridicas = FactoryRepositorio.get(EntidadJuridica.class).buscarTodos();
+        entidadesJuridicas.forEach(x -> {
+            System.out.println("Ent Jur: "+x.getIdEntidadJuridica());
 //            ValidadorTransparencia.setConfig(x.getConfiguracionEntidadJuridica());
 //            for(Egreso egreso: x.getTodosLosEgresos()){
 //                if(!egreso.isValidado()) {
@@ -31,29 +32,30 @@ public class JobTick implements Job {
 //                    System.out.println("Egreso " + egreso.getIdEgreso() + " fue validado.");
 //                }
 //            }
-//        });
-//        System.out.println("Fin validacion por scheduler.");
+        });
+        System.out.println("Fin validacion por scheduler.");
 
-        try{
-            String str = "A";
-            BufferedWriter writer = new BufferedWriter(new FileWriter("./testFile.txt", true));
-            writer.append(' ');
-            writer.append(str);
-            writer.close();
-
-            BufferedReader reader = new BufferedReader(new FileReader("./testFile.txt"));
-            String currentLine = reader.readLine();
-            reader.close();
-
-            System.out.println("READED: "+ currentLine);
-
-            Rol rol = new Rol();
-            rol.setDescripcion(currentLine);
-            FactoryRepositorio.get(Rol.class).agregar(rol);
-
-        }catch(Exception ex){
-
-        }
+//        try{
+//
+//            String str = "A";
+//            BufferedWriter writer = new BufferedWriter(new FileWriter("./testFile.txt", true));
+//            writer.append(' ');
+//            writer.append(str);
+//            writer.close();
+//
+//            BufferedReader reader = new BufferedReader(new FileReader("./testFile.txt"));
+//            String currentLine = reader.readLine();
+//            reader.close();
+//
+//            System.out.println("READED: "+ currentLine);
+//
+//            Rol rol = new Rol();
+//            rol.setDescripcion(currentLine);
+//            FactoryRepositorio.get(Rol.class).agregar(rol);
+//
+//        }catch(Exception ex){
+//
+//        }
 
 
     }
