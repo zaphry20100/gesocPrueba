@@ -23,22 +23,22 @@ public class Main {
     public static Scheduler scheduler;
     public static void main(String[] args) {
 
-        SchedulerFactory schedFact = new StdSchedulerFactory();
-        try {
-
-            Rol rol = new Rol();
-            rol.setDescripcion("previo");
-            FactoryRepositorio.get(Rol.class).agregar(rol);
-
-            Scheduler sched = schedFact.getScheduler();
-            JobDetail job = JobBuilder.newJob(JobTick.class).withIdentity("myJob", "group1").usingJobData("jobSays", "Hello World!").usingJobData("myFloatValue", 3.141f).build();
-            Trigger trigger = TriggerBuilder.newTrigger().withIdentity("myTrigger", "group1").startNow().withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(5).repeatForever()).build();
-            sched.scheduleJob(job, trigger);
-            sched.start();
-
-        } catch (SchedulerException e) {
-            e.printStackTrace();
-        }
+//        SchedulerFactory schedFact = new StdSchedulerFactory();
+//        try {
+//
+//            Rol rol = new Rol();
+//            rol.setDescripcion("previo");
+//            FactoryRepositorio.get(Rol.class).agregar(rol);
+//
+//            Scheduler sched = schedFact.getScheduler();
+//            JobDetail job = JobBuilder.newJob(JobTick.class).withIdentity("myJob", "group1").usingJobData("jobSays", "Hello World!").usingJobData("myFloatValue", 3.141f).build();
+//            Trigger trigger = TriggerBuilder.newTrigger().withIdentity("myTrigger", "group1").startNow().withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(5).repeatForever()).build();
+//            sched.scheduleJob(job, trigger);
+//            sched.start();
+//
+//        } catch (SchedulerException e) {
+//            e.printStackTrace();
+//        }
 
         Spark.port(getHerokuAssignedPort());
         get("/hello", (req, res) -> "Hello Heroku World");
