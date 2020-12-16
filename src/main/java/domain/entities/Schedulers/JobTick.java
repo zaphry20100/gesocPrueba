@@ -21,8 +21,8 @@ public class JobTick implements Job {
             //ValidadorTransparencia.setConfig(x.getConfiguracionEntidadJuridica());
             x.getTodosLosEgresos().stream().forEach(y->{
                 if(!y.isValidado()) {
-                    ValidadorTransparencia.validar(y);
-                    System.out.println("Egreso " + y.getIdEgreso() + " fue validado.");
+//                    ValidadorTransparencia.validar(y);
+//                    System.out.println("Egreso " + y.getIdEgreso() + " fue validado.");
                 }
                 Rol rol = new Rol();
                 rol.setDescripcion("ejemplo scheduler " + x.getIdEntidadJuridica() + " " + y.getIdEgreso());
