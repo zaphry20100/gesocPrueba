@@ -22,9 +22,9 @@ public class JobTick implements Job {
         //System.out.println("This is the job A");
 
         System.out.println("Se esta validado por scheduler.");
-        List<EntidadJuridica> entidadesJuridicas = FactoryRepositorio.get(EntidadJuridica.class).buscarTodos();
-        entidadesJuridicas.forEach(x -> {
-            System.out.println("Ent Jur: "+x.getIdEntidadJuridica());
+//        List<EntidadJuridica> entidadesJuridicas = FactoryRepositorio.get(EntidadJuridica.class).buscarTodos();
+//        entidadesJuridicas.forEach(x -> {
+//            System.out.println("Ent Jur: "+x.getIdEntidadJuridica());
 //            ValidadorTransparencia.setConfig(x.getConfiguracionEntidadJuridica());
 //            for(Egreso egreso: x.getTodosLosEgresos()){
 //                if(!egreso.isValidado()) {
@@ -32,7 +32,7 @@ public class JobTick implements Job {
 //                    System.out.println("Egreso " + egreso.getIdEgreso() + " fue validado.");
 //                }
 //            }
-        });
+//        });
         System.out.println("Fin validacion por scheduler.");
 
 //        try{
