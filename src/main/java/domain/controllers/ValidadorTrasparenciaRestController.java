@@ -61,6 +61,9 @@ public class ValidadorTrasparenciaRestController {
         List<Egreso> egresos = entidadJuridica.getTodosLosEgresos();
         List<Egreso> egresosNoValidado = egresos.stream().filter(x -> ! x.isValidado() ).collect(Collectors.toList());
 
+        System.out.println("Egresos totales: "+ egresos.size());
+        System.out.println("egresosNoValidado: "+ egresosNoValidado.size());
+
         int egresosTotales = egresos.size();
         int egresosNoValidadosTotales = egresosNoValidado.size();
         int egresosValidados = egresosTotales - egresosNoValidadosTotales;
