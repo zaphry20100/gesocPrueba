@@ -92,6 +92,11 @@ public class EgresosRestController{
         }
         //List<Egreso> egresosFiltrados = new ArrayList<>();
         //egresosFiltrados = egresos.stream().filter(x-> x.getEntidadJuridica().getIdEntidadJuridica() == Integer.parseInt(request.splat()[0])).collect(Collectors.toList());
+        egresos.stream().forEach(x-> {
+            x.getListaPresupuestos().stream().forEach(y->{
+                x.getPresupuestos().add(y.getIdPresupuesto());
+            });
+        });
         response.type("application/json");
         String result = new JSONObject().toString();
         if (! egresos.isEmpty()){

@@ -81,7 +81,7 @@ public class Egreso {//extends Operacion{
     @JoinColumn(name = "idDocumentoComercial", referencedColumnName = "idDocumentoComercial")
     private DocumentoComercial docCom;
 
-    @JsonIdentityReference(alwaysAsId = true)
+    @JsonIgnore
     @OneToMany(mappedBy = "egreso", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Presupuesto> listaPresupuestos;
 
@@ -97,7 +97,7 @@ public class Egreso {//extends Operacion{
     @Transient
     int presupuestoSeleccionado;
 
-    @JsonIgnore
+    @JsonIdentityReference(alwaysAsId = true)
     @Transient
     List<Integer> presupuestos;
 
