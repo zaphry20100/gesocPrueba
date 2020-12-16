@@ -9,6 +9,10 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -16,20 +20,42 @@ public class JobTick implements Job {
 
     public void execute(JobExecutionContext arg0) throws JobExecutionException {
         //System.out.println("This is the job A");
+
+        System.out.println("Se esta validado por scheduler.");
         List<EntidadJuridica> entidadesJuridicas = FactoryRepositorio.get(EntidadJuridica.class).buscarTodos();
         entidadesJuridicas.forEach(x -> {
-            //ValidadorTransparencia.setConfig(x.getConfiguracionEntidadJuridica());
-            x.getTodosLosEgresos().stream().forEach(y->{
-                if(!y.isValidado()) {
-//                    ValidadorTransparencia.validar(y);
-//                    System.out.println("Egreso " + y.getIdEgreso() + " fue validado.");
+            ValidadorTransparencia.setConfig(x.getConfiguracionEntidadJuridica());
+            for(Egreso egreso: x.getTodosLosEgresos()){
+                if(!egreso.isValidado()) {
+                    //ValidadorTransparencia.validar(egreso);
+                    System.out.println("Egreso " + egreso.getIdEgreso() + " fue validado.");
                 }
-                Rol rol = new Rol();
-                rol.setDescripcion("ejemplo scheduler " + x.getIdEntidadJuridica() + " " + y.getIdEgreso());
-                FactoryRepositorio.get(Rol.class).agregar(rol);
-            });
+            }
         });
-
         System.out.println("Fin validacion por scheduler.");
+
+        try{
+
+            String str = "A";
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./testFile.txt", true));
+            writer.append(' ');
+            writer.append(str);
+            writer.close();
+
+            BufferedReader reader = new BufferedReader(new FileReader("./testFile.txt"));
+            String currentLine = reader.readLine();
+            reader.close();
+
+            System.out.println("READED: "+ currentLine);
+
+            Rol rol = new Rol();
+            rol.setDescripcion(currentLine);
+            FactoryRepositorio.get(Rol.class).agregar(rol);
+
+        }catch(Exception ex){
+
+        }
+
+
     }
 }

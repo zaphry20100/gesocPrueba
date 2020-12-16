@@ -10,7 +10,9 @@ import server.Router;
 import spark.Spark;
 import spark.debug.DebugScreen;
 
+import java.io.BufferedWriter;
 import java.io.Console;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -28,9 +30,8 @@ public class Main {
         try {
 
             sched = schedFact.getScheduler();
-
             JobDetail job = JobBuilder.newJob(JobTick.class).withIdentity("myJob", "group1").usingJobData("jobSays", "Hello World!").usingJobData("myFloatValue", 3.141f).build();
-            Trigger trigger = TriggerBuilder.newTrigger().withIdentity("myTrigger", "group1").startNow().withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(30).repeatForever()).build();
+            Trigger trigger = TriggerBuilder.newTrigger().withIdentity("myTrigger", "group1").startNow().withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(5).repeatForever()).build();
             sched.scheduleJob(job, trigger);
             sched.start();
 
