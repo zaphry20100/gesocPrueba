@@ -135,6 +135,7 @@ public class Egreso {//extends Operacion{
         egresosXIngresos = new ArrayList<>();
         categorias = new ArrayList<>();
 
+        presupuestos = new ArrayList<>();
         resultadoValidacions = new ArrayList<>();
 
         this.quitarRepetidos();
