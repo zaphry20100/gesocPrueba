@@ -3,6 +3,7 @@ package domain.entities.Validadores.ValidadorTransparencia;
 import domain.entities.Models.Entidades.ConfiguracionEntidadJuridica;
 import domain.entities.Models.Transacciones.Egreso;
 import domain.entities.Validadores.ValidadorTransparencia.CriteriosValidacion.CriteriosValidacion;
+import domain.repositories.factories.FactoryRepositorio;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -52,18 +53,18 @@ public class ValidadorTransparencia{
 
         boolean resultado = false;
 
-            resultado = ValidadorTransparencia.listaCriterios.stream().allMatch(x -> {
-                try {
-                    boolean validacion = x.validar(egreso, config);
-                    if(!validacion){
-                        detalleResultado[0] = "No amigo, asi no...";
-                    }
-                    return validacion;
-                } catch (Exception e) {
-                    detalleResultado[0] = e.getMessage(); //ya veremos
+        resultado = ValidadorTransparencia.listaCriterios.stream().allMatch(x -> {
+            try {
+                boolean validacion = x.validar(egreso, config);
+                if(!validacion){
+                    detalleResultado[0] = "No amigo, asi no...";
                 }
-                return false;
-            });
+                return validacion;
+            } catch (Exception e) {
+                detalleResultado[0] = e.getMessage(); //ya veremos
+            }
+            return false;
+        });
 
         //ResultadoValidacion resultadoValidacion = new ResultadoValidacion(1, egreso, detalleResultado[0], LocalDate.now(), resultado);
         ResultadoValidacion resultadoValidacion = new ResultadoValidacion();
@@ -72,6 +73,10 @@ public class ValidadorTransparencia{
         resultadoValidacion.setFechaValidacion(LocalDate.now());
         resultadoValidacion.setResultado(resultado);
         ValidadorTransparencia.resultadosValidaciones.add(resultadoValidacion);
+        FactoryRepositorio.get(ResultadoValidacion.class).agregar(resultadoValidacion);
+
+        egreso.setValidado(resultado);
+        FactoryRepositorio.get(Egreso.class).modificar(egreso);
 
         return resultadoValidacion.toString();
     }

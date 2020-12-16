@@ -14,7 +14,8 @@ public class CriterioCompraDeUnPresupuesto extends CriteriosValidacion {
         if(egreso.getPresupuestoElegido() == null){
             throw new Exception("no te puedo reiterar lo idiota que sos si ya me venis poniendo mil cosas mal no lo puedo creer. No te das cuenta que no hay un presupuesto elegido en egreso? dios u disgust me");
         }
-        return presupuestos.contains(egreso.getPresupuestoElegido());
+        boolean loContiene = presupuestos.stream().anyMatch(x -> (x.getIdPresupuesto() == egreso.getPresupuestoElegido().getIdPresupuesto()));
+        return loContiene;
 
     }
 }

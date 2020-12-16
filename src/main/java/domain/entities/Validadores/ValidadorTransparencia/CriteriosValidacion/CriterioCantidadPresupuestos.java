@@ -9,6 +9,9 @@ public class CriterioCantidadPresupuestos extends CriteriosValidacion{
     public boolean validar(Egreso egreso, ConfiguracionEntidadJuridica config) throws Exception {
         super.checkeoExcepciones(egreso, config);
         egreso.quitarRepetidos();
-        return egreso.getListaPresupuestos().size() == Integer.parseInt(config.getConfigEntidadJuridica().get("CriterioCantidadPresupuestos"));
+        int cantPresupuestoRequeridos = Integer.parseInt(config.getConfigEntidadJuridica().get("CriterioCantidadPresupuestos"));
+        int cantPresupuestosEgreso = egreso.getListaPresupuestos().size();
+        boolean estaOk = (cantPresupuestoRequeridos == cantPresupuestosEgreso);
+        return estaOk ;
     }
 }

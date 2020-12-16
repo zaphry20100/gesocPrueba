@@ -11,7 +11,7 @@ public class CriterioMenorValor extends CriteriosValidacion{
 
     @Override
     public boolean validar(Egreso egreso, ConfiguracionEntidadJuridica config) throws Exception {
-       super.checkeoExcepciones(egreso,config);
+        super.checkeoExcepciones(egreso,config);
         List<Presupuesto> presupuestos = egreso.getListaPresupuestos();
         if(egreso.getImporte() <= 0){
             throw new Exception("nada que ver aca...... no fue ninguna coima ni nada de eso");
