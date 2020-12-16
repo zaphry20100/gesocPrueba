@@ -30,7 +30,7 @@ public class ValidadorTransparencia{
 
     public static void setListaCriterios(Egreso egreso) {
         ValidadorTransparencia.listaCriterios = new ArrayList<>();
-        ValidadorTransparencia.config = config;
+        ValidadorTransparencia.config = egreso.getEntidadJuridica().getConfiguracionEntidadJuridica();
         for (String criterio: egreso.getEntidadJuridica().getConfiguracionEntidadJuridica().getConfigEntidadJuridica().keySet()) { //Se setean dos veces los criterios!
             Class<?> nombreClaseCriterio;
 

@@ -28,7 +28,6 @@ public class JobTick implements Job {
 //                rol.setDescripcion("ejemplo scheduler " + x.getIdEntidadJuridica() + " " + y.getIdEgreso());
 //                FactoryRepositorio.get(Rol.class).agregar(rol);
             });
-
         });
 
         System.out.println("Fin validacion por scheduler.");
