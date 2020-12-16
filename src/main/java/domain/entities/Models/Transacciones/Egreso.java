@@ -97,7 +97,7 @@ public class Egreso {//extends Operacion{
     @Transient
     int presupuestoSeleccionado;
 
-    @JsonIdentityReference(alwaysAsId = true)
+
     @Transient
     List<Integer> presupuestos;
 

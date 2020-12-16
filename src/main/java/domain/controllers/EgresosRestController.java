@@ -94,6 +94,7 @@ public class EgresosRestController{
         //egresosFiltrados = egresos.stream().filter(x-> x.getEntidadJuridica().getIdEntidadJuridica() == Integer.parseInt(request.splat()[0])).collect(Collectors.toList());
         egresos.stream().forEach(x-> {
             x.getListaPresupuestos().stream().forEach(y->{
+
                 x.getPresupuestos().add(y.getIdPresupuesto());
             });
         });
