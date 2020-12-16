@@ -35,6 +35,7 @@ public class Categorizador {
             case "Construcción":
                 if (empleados >= 12 && empleados < 45) {
                     if (promedioActividad < 15230000L) {
+                        entidadJuridica.setCategoriaentidad(obtenerCategoria(categoriasEntidad, "No tiene"));
                         return "No tiene";
                     } else if (promedioActividad >= 90310000) {
                         entidadJuridica.setCategoriaentidad(obtenerCategoria(categoriasEntidad, "Pequeña"));
@@ -65,6 +66,7 @@ public class Categorizador {
             case "Servicios":
                 if (empleados >= 7 && empleados < 30) {
                     if (promedioActividad < 8500000) {
+                        entidadJuridica.setCategoriaentidad(obtenerCategoria(categoriasEntidad, "No tiene"));
                         return "No tiene";
                     } else if (promedioActividad >= 50950000) {
                         entidadJuridica.setCategoriaentidad(obtenerCategoria(categoriasEntidad, "Pequeña"));
@@ -95,6 +97,7 @@ public class Categorizador {
             case "Comercio":
                 if (empleados >= 7 && empleados < 35) {
                     if (promedioActividad < 29740000) {
+                        entidadJuridica.setCategoriaentidad(obtenerCategoria(categoriasEntidad, "No tiene"));
                         return "No tiene";
                     } else if (promedioActividad >= 178860000) {
                         entidadJuridica.setCategoriaentidad(obtenerCategoria(categoriasEntidad, "Pequeña"));
@@ -123,6 +126,7 @@ public class Categorizador {
             case "Industria y Minería":
                 if (empleados >= 15 && empleados < 60) {
                     if (promedioActividad < 26540000) {
+                        entidadJuridica.setCategoriaentidad(obtenerCategoria(categoriasEntidad, "No tiene"));
                         return "No tiene";
                     } else if (promedioActividad >= 190410000) {
                         entidadJuridica.setCategoriaentidad(obtenerCategoria(categoriasEntidad, "Pequeña"));
@@ -152,6 +156,7 @@ public class Categorizador {
             case "Agropecuario":
                 if (empleados >= 5 && empleados < 10) {
                     if (promedioActividad < 12890000) {
+                        entidadJuridica.setCategoriaentidad(obtenerCategoria(categoriasEntidad, "No tiene"));
                         return "No tiene";
                     } else if (promedioActividad >= 48480000) {
                         entidadJuridica.setCategoriaentidad(obtenerCategoria(categoriasEntidad, "Pequeña"));
@@ -178,6 +183,7 @@ public class Categorizador {
                     return "Mediana - Tipo 2";
                 }
             default:
+                entidadJuridica.setCategoriaentidad(obtenerCategoria(categoriasEntidad, "No tiene"));
                 return "No tiene";
 
 
