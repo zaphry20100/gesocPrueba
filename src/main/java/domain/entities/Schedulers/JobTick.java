@@ -24,9 +24,9 @@ public class JobTick implements Job {
                     ValidadorTransparencia.validar(y);
                     System.out.println("Egreso " + y.getIdEgreso() + " fue validado.");
                 }
-//                Rol rol = new Rol();
-//                rol.setDescripcion("ejemplo scheduler " + x.getIdEntidadJuridica() + " " + y.getIdEgreso());
-//                FactoryRepositorio.get(Rol.class).agregar(rol);
+                Rol rol = new Rol();
+                rol.setDescripcion("ejemplo scheduler " + x.getIdEntidadJuridica() + " " + y.getIdEgreso());
+                FactoryRepositorio.get(Rol.class).agregar(rol);
             });
         });
 
