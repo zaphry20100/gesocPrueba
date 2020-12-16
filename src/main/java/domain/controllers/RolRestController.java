@@ -17,7 +17,7 @@ public class RolRestController {
 
     public String crear(Request request, Response response){
         Rol rol = new Gson().fromJson(request.body(), Rol.class);
-        FactoryRepositorio.get(Proveedor.class).agregar(rol);
+        FactoryRepositorio.get(Rol.class).agregar(rol);
         response.type("application/json");
         return new JSONObject().put("id", rol.getIdRol()).toString();
     }
