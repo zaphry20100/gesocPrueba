@@ -28,13 +28,18 @@ public class UploadFilesController {
         int idEgreso = new Integer(request.params("idEgreso"));
         String tipoArchivo = request.params("tipoArchivo");
 
+        Egreso egreso = FactoryRepositorio.get(Egreso.class).buscar(idEgreso);
+
         DocumentoComercial documentoComercial = new DocumentoComercial();
-        documentoComercial.setEgreso(FactoryRepositorio.get(Egreso.class).buscar(idEgreso));
+        documentoComercial.setEgreso(egreso);
         documentoComercial.setNumeroDocCom(0);
         documentoComercial.setPath("./" + nombreArchivo + "." + tipoArchivo);
         documentoComercial.setTipo(tipoArchivo);
 
         FactoryRepositorio.get(DocumentoComercial.class).agregar(documentoComercial);
+
+        egreso.setDocCom(documentoComercial);
+        FactoryRepositorio.get(Egreso.class).modificar(egreso);
 
         String location = "./";  // the directory location where files will be stored
         long maxFileSize = 100000000;  // the maximum size allowed for uploaded files
