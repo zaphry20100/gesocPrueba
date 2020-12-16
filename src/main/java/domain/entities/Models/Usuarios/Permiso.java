@@ -20,7 +20,7 @@ public class Permiso {
     @Column(name = "descripcion")
     private String descripcion;
 
-    
+
     @OneToMany(mappedBy = "permiso", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Rolxpermiso> rolxpermisoList;
 

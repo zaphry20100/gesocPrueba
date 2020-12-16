@@ -84,7 +84,9 @@ public class EgresosRestController{
     }
 
     public String mostrarTodos(Request request, Response response) {
+        int idEntidadJuridica = new Integer(request.params("idEntJur"));
         List<Egreso> egresos = FactoryRepositorio.get(Egreso.class).buscarTodos();
+        egresos = egresos.stream().filter(x -> x.getEntidadJuridica().getIdEntidadJuridica() == idEntidadJuridica).collect(Collectors.toList());
         for(Egreso egreso:egresos){
             egreso.quitarRepetidos();
         }
@@ -111,14 +113,15 @@ public class EgresosRestController{
 
         //Asignar lista de presupuestoss
         egreso.getPresupuestos().stream().forEach(x->{
-            egreso.getListaPresupuestos().add(FactoryRepositorio.get(Presupuesto.class).buscar(x));
+            Presupuesto presupuestoX = FactoryRepositorio.get(Presupuesto.class).buscar(x);
+            presupuestoX.setEgreso(egreso);
+            FactoryRepositorio.get(Presupuesto.class).modificar(presupuestoX);
         });
 
         //Asignar presupuesto elegido
         Presupuesto presupuestoElegido = FactoryRepositorio.get(Presupuesto.class).buscar(egreso.getPresupuestoSeleccionado());
         egreso.setPresupuestoElegido(presupuestoElegido);
         presupuestoElegido.setEgresoAsignado(egreso);
-
 
         //Copiar items del presupuesto
         Presupuesto presupuesto = FactoryRepositorio.get(Presupuesto.class).buscar(egreso.getPresupuestoSeleccionado());

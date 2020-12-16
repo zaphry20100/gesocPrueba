@@ -69,6 +69,8 @@ public class CategoriaPresupuesto {
 
     public void quitarRepetidos(){
         this.presupuestos=this.presupuestos.stream().distinct().collect(Collectors.toList());
+        this.egresos = this.egresos.stream().distinct().collect(Collectors.toList());
+        this.ingreso = this.ingreso.stream().distinct().collect(Collectors.toList());
     }
 
     public int getIdCategoriaPresupuesto() {

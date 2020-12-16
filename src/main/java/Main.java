@@ -22,7 +22,7 @@ import static spark.Spark.port;
 
 public class Main {
 
-    public static Scheduler sched;
+    //public static Scheduler sched;
     public static void main(String[] args) {
 
 //        SchedulerFactory schedFact = new StdSchedulerFactory();

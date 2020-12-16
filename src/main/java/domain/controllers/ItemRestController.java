@@ -9,6 +9,7 @@ import spark.Request;
 import spark.Response;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ItemRestController {
 
@@ -53,11 +54,13 @@ public class ItemRestController {
     }
 
     public String mostrarTodos(Request request, Response response) {
-        List<Item> presupuestos = FactoryRepositorio.get(Item.class).buscarTodos();
+        int idEntidadJuridica = new Integer(request.params("idEntJur"));
+        List<Item> items = FactoryRepositorio.get(Item.class).buscarTodos();
+        items = items.stream().filter(x -> x.getEntidadjuridica().getIdEntidadJuridica() == idEntidadJuridica).collect(Collectors.toList());
         String result = new JSONObject().toString();
         response.type("application/json");
-        if (! presupuestos.isEmpty()){
-            result = jsonHelper.convertirAJson(presupuestos);
+        if (! items.isEmpty()){
+            result = jsonHelper.convertirAJson(items);
         }
         return result;
     }

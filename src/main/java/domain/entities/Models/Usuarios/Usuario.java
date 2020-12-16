@@ -32,9 +32,11 @@ public class Usuario {
     @Column(name="nombreUsuario")
     private String nombreUsuario;
 
+    @JsonIgnore
     @Column(name="clave")
     private String clave;
 
+    @JsonIgnore
     @Column(name="estado")
     private boolean estado = true;
 
@@ -67,6 +69,7 @@ public class Usuario {
 
     private void quitarRepetidos(){
         this.revisiones = revisiones.stream().distinct().collect(Collectors.toList());
+        this.bandejamensaje.quitarRepetidos();
 
     }
 
@@ -89,7 +92,7 @@ public class Usuario {
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
-    
+
     public Rol getRol() {
         return rol;
     }
@@ -97,7 +100,7 @@ public class Usuario {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
-    
+
     public EntidadJuridica getEntidadJuridica() {
         return entidadjuridica;
     }
@@ -105,7 +108,7 @@ public class Usuario {
     public void setEntidadJuridica(EntidadJuridica entidadJuridica) {
         this.entidadjuridica = entidadJuridica;
     }
-    
+
     public String getNombreUsuario() {
         return nombreUsuario;
     }
@@ -113,7 +116,7 @@ public class Usuario {
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
-    
+
     public String getMail() {
         return mail;
     }
@@ -121,7 +124,7 @@ public class Usuario {
     public void setMail(String mail) {
         this.mail = mail;
     }
-    
+
     public String getClave() {
         return clave;
     }
@@ -129,7 +132,7 @@ public class Usuario {
     public void setClave(String clave) {
         this.clave = clave;
     }
-    
+
     public boolean getEstado() {
         return estado;
     }

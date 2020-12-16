@@ -103,6 +103,7 @@ public class EntidadJuridica {
         this.entidadesbase          =   this.entidadesbase.stream().distinct().collect(Collectors.toList());
         this.usuarios               =   this.usuarios.stream().distinct().collect(Collectors.toList());
         this.criterioPresupuesto    =   this.criterioPresupuesto.stream().distinct().collect(Collectors.toList());
+        this.items                  =   this.items.stream().distinct().collect(Collectors.toList());
     }
 
     public void categorizar(EntidadJuridica entidadJuridica, RequestRecategorizar requestRecategorizar){

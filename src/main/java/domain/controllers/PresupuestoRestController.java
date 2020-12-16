@@ -32,6 +32,7 @@ public class PresupuestoRestController {
 
     public String mostrar(Request request, Response response){
         Presupuesto presupuesto = FactoryRepositorio.get(Presupuesto.class).buscar(new Integer(request.params("id")));
+        presupuesto.quitarRepetidos();
         this.formatearObjectForJson(presupuesto);
         String jsonObject = (presupuesto!=null) ? (jsonHelper.convertirAJson(presupuesto)):(new JSONObject().toString());
         response.type("application/json");

@@ -38,10 +38,11 @@ public class ValidadorTrasparenciaRestController {
         egresoNoValidados.forEach(x-> {
             x.quitarRepetidos();
             String mensaje = ValidadorTransparencia.validar(x);
+
             //String mensaje = "asd";
             //x.setValidado(true);
-            //FactoryRepositorio.get(EntidadJuridica.class).modificar(x);
 
+            //FactoryRepositorio.get(EntidadJuridica.class).modificar(x);
             ServicioMensajes.mandarMensaje(mensaje, x.getRevisores());
         });
 

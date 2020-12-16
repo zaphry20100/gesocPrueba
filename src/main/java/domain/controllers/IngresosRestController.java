@@ -56,7 +56,9 @@ public class IngresosRestController {
     }
 
     public String mostrarTodos(Request request, Response response) {
+        int idEntidadJuridica = new Integer(request.params("idEntJur"));
         List<Ingreso> ingresos = FactoryRepositorio.get(Ingreso.class).buscarTodos();
+        ingresos = ingresos.stream().filter(x -> x.getEntidadjuridica().getIdEntidadJuridica() == idEntidadJuridica).collect(Collectors.toList());
         ingresos.forEach(x -> x.quitarRepetidos());
         //List<Ingreso> ingresosFiltrados = new ArrayList<>();
         //ingresosFiltrados = ingresos.stream().filter(x-> x.getEntidadjuridica().getIdEntidadJuridica() == Integer.parseInt(request.splat()[0])).collect(Collectors.toList());

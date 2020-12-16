@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import domain.entities.Models.BandejaMensaje.Filtros.Filtro;
+
+import domain.entities.Models.ContextAPI.ResponseMensajes;
 import domain.entities.Models.Usuarios.Usuario;
+import domain.repositories.factories.FactoryRepositorio;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -44,7 +47,8 @@ public class BandejaMensaje {
         this.setMensajes(this.getMensajes().stream().distinct().collect(Collectors.toList()));
     }
 
-    public List<Mensaje> leerMensajes() {
+    public ResponseMensajes leerMensajes() {
+        ResponseMensajes responseMensajes = new ResponseMensajes();
         List<Mensaje> mensajesFiltrados = new ArrayList<>();
         if(!listaFiltros.isEmpty()){
             for (Filtro filtro: listaFiltros) {
@@ -54,9 +58,15 @@ public class BandejaMensaje {
             mensajesFiltrados = mensajes;
         }
         mensajesFiltrados.forEach(mensaje -> {
-            mensaje.setLeido(true);
+            if(!mensaje.isLeido()){
+                responseMensajes.cantidadMensajesNuevos++;
+                mensaje.setLeido(true);
+                FactoryRepositorio.get(Mensaje.class).modificar(mensaje);
+            }
         });
-        return mensajesFiltrados;
+        mensajesFiltrados = mensajesFiltrados.stream().distinct().collect(Collectors.toList());
+        responseMensajes.mensajes = mensajesFiltrados;
+        return responseMensajes;
     }
 
     public void agregarMensajes(Mensaje mensaje){

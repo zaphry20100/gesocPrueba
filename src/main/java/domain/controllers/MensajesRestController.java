@@ -3,6 +3,7 @@ package domain.controllers;
 import com.google.gson.Gson;
 import domain.entities.Models.BandejaMensaje.BandejaMensaje;
 import domain.entities.Models.BandejaMensaje.Mensaje;
+import domain.entities.Models.ContextAPI.ResponseMensajes;
 import domain.entities.Models.Entidades.EntidadJuridica;
 import domain.entities.Models.Transacciones.Ingreso;
 import domain.entities.Models.Transacciones.Presupuesto;
@@ -68,11 +69,10 @@ public class MensajesRestController {
 
     public String mostrarMensajes(Request request, Response response) {
         Usuario usuario = FactoryRepositorio.get(Usuario.class).buscar(new Integer(request.params("idUser")));
-        List<Mensaje> mensajes = usuario.getBandejaMensaje().leerMensajes();//FactoryRepositorio.get(Mensaje.class).buscarTodos();
-        mensajes = mensajes.stream().distinct().collect(Collectors.toList());
+        ResponseMensajes mensajes = usuario.getBandejaMensaje().leerMensajes();//FactoryRepositorio.get(Mensaje.class).buscarTodos();
         String result = new JSONObject().toString();
         response.type("application/json");
-        if (! mensajes.isEmpty()){
+        if (! mensajes.mensajes.isEmpty()){
             result = jsonHelper.convertirAJson(mensajes);
         }
         return result;

@@ -7,7 +7,10 @@ import domain.entities.Models.ContextAPI.RequestItemXPresupuesto;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idPresupuesto")
 @Entity
@@ -72,6 +75,13 @@ public class Presupuesto {
         listaPresupuestoXItem = new ArrayList<>();
         categorias = new ArrayList<>();
         items = new ArrayList<>();
+    }
+
+    public void quitarRepetidos(){
+        this.listaPresupuestoXItem = listaPresupuestoXItem.stream()
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(x -> x.getIdPresupuestoXItem()))),
+                        ArrayList::new));
     }
 
     public int getIdPresupuesto() {

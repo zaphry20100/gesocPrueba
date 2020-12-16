@@ -84,7 +84,9 @@ public class UsuarioRestController {
     }
 
     public String mostrarTodos(Request request, Response response) {
+        int idEntidadJuridica = new Integer(request.params("idEntJur"));
         List<Usuario> usuarios = FactoryRepositorio.get(Usuario.class).buscarTodos();
+        usuarios = usuarios.stream().filter(x -> x.getEntidadJuridica().getIdEntidadJuridica() == idEntidadJuridica).collect(Collectors.toList());
         String result = new JSONObject().toString();
         for(Usuario usuario:usuarios){
             usuario = this.quitarRepetidos(usuario);
@@ -99,6 +101,7 @@ public class UsuarioRestController {
     private Usuario quitarRepetidos(Usuario usuario){
         usuario.setEgresos(usuario.getEgresos().stream().distinct().collect(Collectors.toList()));
         usuario.setRevisiones(usuario.getRevisiones().stream().distinct().collect(Collectors.toList()));
+        usuario.getBandejaMensaje().quitarRepetidos();
         return usuario;
     }
 

@@ -53,6 +53,9 @@ public class CriterioPresupuesto {
 
     public void quitarRepetidos(){
         categoriapresupuestos = categoriapresupuestos.stream().distinct().collect(Collectors.toList());
+        for(CategoriaPresupuesto categoriaPresupuesto:categoriapresupuestos){
+            categoriaPresupuesto.quitarRepetidos();
+        }
     }
 
     public int getIdCriterioPresupuesto() {
