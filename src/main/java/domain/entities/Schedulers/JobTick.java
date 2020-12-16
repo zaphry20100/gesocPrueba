@@ -16,13 +16,8 @@ public class JobTick implements Job {
 
     public void execute(JobExecutionContext arg0) throws JobExecutionException {
         //System.out.println("This is the job A");
-        Rol rol = new Rol();
-        rol.setDescripcion("ejemplo scheduler");
-        FactoryRepositorio.get(Rol.class).agregar(rol);
-
-//        System.out.println("Se esta validado por scheduler.");
-//        List<EntidadJuridica> entidadesJuridicas = FactoryRepositorio.get(EntidadJuridica.class).buscarTodos();
-//        entidadesJuridicas.forEach(x -> {
+        List<EntidadJuridica> entidadesJuridicas = FactoryRepositorio.get(EntidadJuridica.class).buscarTodos();
+        entidadesJuridicas.forEach(x -> {
 //            ValidadorTransparencia.setConfig(x.getConfiguracionEntidadJuridica());
 //            for(Egreso egreso: x.getTodosLosEgresos()){
 //                if(!egreso.isValidado()) {
@@ -30,7 +25,13 @@ public class JobTick implements Job {
 //                    System.out.println("Egreso " + egreso.getIdEgreso() + " fue validado.");
 //                }
 //            }
-//        });
+            Rol rol = new Rol();
+            rol.setDescripcion("ejemplo scheduler " + x.getIdEntidadJuridica() );
+            FactoryRepositorio.get(Rol.class).agregar(rol);
+        });
+
+
+
         System.out.println("Fin validacion por scheduler.");
     }
 }
