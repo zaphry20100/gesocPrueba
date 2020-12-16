@@ -26,23 +26,22 @@ public class ValidadorTrasparenciaRestController {
         if(request.params("id") != null){
             Egreso egreso = FactoryRepositorio.get(Egreso.class).buscar(new Integer(request.params("id")));
             egresos.add(egreso);
-            ValidadorTransparencia.setConfig(egreso.getEntidadJuridica().getConfiguracionEntidadJuridica());
+            //ValidadorTransparencia.setConfig(egreso.getEntidadJuridica().getConfiguracionEntidadJuridica());
             entidadJuridica = egreso.getEntidadJuridica();
         }else{
             entidadJuridica = FactoryRepositorio.get(EntidadJuridica.class).buscar(new Integer(request.params("idEntJur")));
             entidadJuridica.setEgresos(entidadJuridica.getTodosLosEgresos().stream().distinct().collect(Collectors.toList()));
             egresos = entidadJuridica.getTodosLosEgresos();
-            ValidadorTransparencia.setConfig(entidadJuridica.getConfiguracionEntidadJuridica());
+            //ValidadorTransparencia.setConfig(entidadJuridica.getConfiguracionEntidadJuridica());
         }
         List<Egreso> egresoNoValidados = egresos.stream().filter(x ->  ! x.isValidado() ).collect(Collectors.toList());
         egresoNoValidados.forEach(x-> {
             x.quitarRepetidos();
             String mensaje = ValidadorTransparencia.validar(x);
-
             //String mensaje = "asd";
             //x.setValidado(true);
-
             //FactoryRepositorio.get(EntidadJuridica.class).modificar(x);
+
             ServicioMensajes.mandarMensaje(mensaje, x.getRevisores());
         });
 
@@ -54,6 +53,7 @@ public class ValidadorTrasparenciaRestController {
         response.type("application/json");
         EntidadJuridica entidadJuridica = FactoryRepositorio.get(EntidadJuridica.class).buscar(new Integer(request.params("idEntJur")));
         entidadJuridica.setEgresos(entidadJuridica.getTodosLosEgresos().stream().distinct().collect(Collectors.toList()));
+        entidadJuridica.quitarRepetidos();
         return this.calcularEstadisticaTransparencia(entidadJuridica);
     }
 
