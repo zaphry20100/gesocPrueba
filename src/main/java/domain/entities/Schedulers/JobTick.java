@@ -18,12 +18,12 @@ public class JobTick implements Job {
         //System.out.println("This is the job A");
         List<EntidadJuridica> entidadesJuridicas = FactoryRepositorio.get(EntidadJuridica.class).buscarTodos();
         entidadesJuridicas.forEach(x -> {
-            ValidadorTransparencia.setConfig(x.getConfiguracionEntidadJuridica());
+            //ValidadorTransparencia.setConfig(x.getConfiguracionEntidadJuridica());
             x.getTodosLosEgresos().stream().forEach(y->{
-//                if(!egreso.isValidado()) {
-//                    ValidadorTransparencia.validar(egreso);
-//                    System.out.println("Egreso " + egreso.getIdEgreso() + " fue validado.");
-//                }
+                if(!y.isValidado()) {
+                    ValidadorTransparencia.validar(y);
+                    System.out.println("Egreso " + y.getIdEgreso() + " fue validado.");
+                }
                 Rol rol = new Rol();
                 rol.setDescripcion("ejemplo scheduler " + x.getIdEntidadJuridica() + " " + y.getIdEgreso());
                 FactoryRepositorio.get(Rol.class).agregar(rol);

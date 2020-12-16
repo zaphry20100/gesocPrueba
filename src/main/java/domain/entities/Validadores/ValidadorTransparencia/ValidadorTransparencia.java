@@ -19,7 +19,7 @@ public class ValidadorTransparencia{
     public ValidadorTransparencia(ConfiguracionEntidadJuridica config) {
         ValidadorTransparencia.config = config;
 
-        setListaCriterios();
+        //setListaCriterios();
     }
 
     public ValidadorTransparencia(){}
@@ -28,10 +28,10 @@ public class ValidadorTransparencia{
         return ValidadorTransparencia.listaCriterios;
     }
 
-    public static void setListaCriterios() {
+    public static void setListaCriterios(Egreso egreso) {
         ValidadorTransparencia.listaCriterios = new ArrayList<>();
-
-        for (String criterio: config.getConfigEntidadJuridica().keySet()) { //Se setean dos veces los criterios!
+        ValidadorTransparencia.config = config;
+        for (String criterio: egreso.getEntidadJuridica().getConfiguracionEntidadJuridica().getConfigEntidadJuridica().keySet()) { //Se setean dos veces los criterios!
             Class<?> nombreClaseCriterio;
 
             try{
@@ -50,8 +50,9 @@ public class ValidadorTransparencia{
 
     public static String validar(Egreso egreso) {
         final String[] detalleResultado = {"Todo piola"};
-
         boolean resultado = false;
+
+        setListaCriterios(egreso);
 
         resultado = ValidadorTransparencia.listaCriterios.stream().allMatch(x -> {
             try {
@@ -91,7 +92,7 @@ public class ValidadorTransparencia{
 
     public static void setConfig(ConfiguracionEntidadJuridica config) {
         ValidadorTransparencia.config = config;
-        setListaCriterios();
+        //setListaCriterios();
     }
 
 }
