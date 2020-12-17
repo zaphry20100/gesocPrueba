@@ -9,7 +9,9 @@ import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PresupuestoRestController {
 
@@ -55,7 +57,21 @@ public class PresupuestoRestController {
     }
 
     public String mostrarTodos(Request request, Response response) {
-        List<Presupuesto> presupuestos = FactoryRepositorio.get(Presupuesto.class).buscarTodos();
+        int idEntidadJuridica = new Integer(request.params("idEntJur"));
+        List<Presupuesto> presupuestos = new ArrayList<>();
+        List<Egreso> egresos = FactoryRepositorio.get(Egreso.class).buscarTodos();
+        egresos = egresos.stream().filter(x -> x.getEntidadJuridica().getIdEntidadJuridica() == idEntidadJuridica).collect(Collectors.toList());
+        for(Egreso egreso:egresos){
+            egreso.quitarRepetidos();
+            for(Presupuesto presupuesto: egreso.getListaPresupuestos()){
+                presupuesto.quitarRepetidos();
+            }
+            presupuestos.addAll(egreso.getListaPresupuestos());
+        }
+
+        for (Presupuesto presupuesto:presupuestos){
+            presupuesto.quitarRepetidos();
+        }
         String result = new JSONObject().toString();
         response.type("application/json");
         if (! presupuestos.isEmpty()){
