@@ -156,6 +156,7 @@ public class Egreso {//extends Operacion{
         egresosXIngresos                = egresosXIngresos.stream().distinct().collect(Collectors.toList());     ;
         categorias                      = categorias.stream().distinct().collect(Collectors.toList());;
         resultadoValidacions            = resultadoValidacions.stream().distinct().collect(Collectors.toList()); ;
+        presupuestos                    = presupuestos.stream().distinct().collect(Collectors.toList());
     }
 
     public List<EgresoXIngreso> getEgresoXIngreso() {
