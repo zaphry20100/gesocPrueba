@@ -97,7 +97,9 @@ public class EgresosRestController{
 
                 x.getPresupuestos().add(y.getIdPresupuesto());
             });
+            x.setPresupuestos(x.getPresupuestos().stream().distinct().collect(Collectors.toList()));
         });
+
         response.type("application/json");
         String result = new JSONObject().toString();
         if (! egresos.isEmpty()){
