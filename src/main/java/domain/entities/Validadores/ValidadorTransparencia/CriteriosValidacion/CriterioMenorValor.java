@@ -11,6 +11,7 @@ public class CriterioMenorValor extends CriteriosValidacion{
 
     @Override
     public boolean validar(Egreso egreso, ConfiguracionEntidadJuridica config) throws Exception {
+        System.out.println("CriterioMenorValor");
         super.checkeoExcepciones(egreso,config);
         List<Presupuesto> presupuestos = egreso.getListaPresupuestos();
         if(egreso.getImporte() <= 0){
@@ -25,7 +26,7 @@ public class CriterioMenorValor extends CriteriosValidacion{
                 throw new Exception("papu, hermano, amigo del alma, no te das cuenta que tenias que elegir este presupuesto de ID " + presupuesto.getIdPresupuesto() + " con el importe de $" + presupuesto.getImporte()+ "??????????!!!!!!!!");
             }
         }
-
+        System.out.println("Estado: true ");
         return true;
     }
 }

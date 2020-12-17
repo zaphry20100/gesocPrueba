@@ -35,7 +35,11 @@ public class ValidadorTrasparenciaRestController {
             ValidadorTransparencia.setConfig(entidadJuridica.getConfiguracionEntidadJuridica());
         }
         List<Egreso> egresoNoValidados = egresos.stream().filter(x ->  ! x.isValidado() ).collect(Collectors.toList());
+        System.out.println("Ent Jur a validar: " + entidadJuridica.getTodosLosEgresos());
+        System.out.println("Cant egresos a validar: "+egresoNoValidados.size());
+
         egresoNoValidados.forEach(x-> {
+            System.out.println("EGreso: " + x.getIdEgreso());
             x.quitarRepetidos();
             String mensaje = ValidadorTransparencia.validar(x);
 

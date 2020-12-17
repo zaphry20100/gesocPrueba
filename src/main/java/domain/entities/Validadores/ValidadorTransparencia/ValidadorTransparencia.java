@@ -54,6 +54,7 @@ public class ValidadorTransparencia{
         boolean resultado = false;
 
         resultado = ValidadorTransparencia.listaCriterios.stream().allMatch(x -> {
+
             try {
                 boolean validacion = x.validar(egreso, config);
                 if(!validacion){
@@ -61,6 +62,7 @@ public class ValidadorTransparencia{
                 }
                 return validacion;
             } catch (Exception e) {
+                System.out.println("Nope :( Exception");
                 detalleResultado[0] = e.getMessage(); //ya veremos
             }
             return false;

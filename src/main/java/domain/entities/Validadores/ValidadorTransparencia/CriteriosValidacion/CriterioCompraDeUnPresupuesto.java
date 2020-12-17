@@ -9,12 +9,15 @@ import java.util.List;
 public class CriterioCompraDeUnPresupuesto extends CriteriosValidacion {
     @Override
     public boolean validar(Egreso egreso, ConfiguracionEntidadJuridica config) throws Exception {
+        System.out.println("CriterioCompraDeUnPresupuesto");
         super.checkeoExcepciones(egreso, config);
         List<Presupuesto> presupuestos = egreso.getListaPresupuestos();
         if(egreso.getPresupuestoElegido() == null){
             throw new Exception("no te puedo reiterar lo idiota que sos si ya me venis poniendo mil cosas mal no lo puedo creer. No te das cuenta que no hay un presupuesto elegido en egreso? dios u disgust me");
         }
         boolean loContiene = presupuestos.stream().anyMatch(x -> (x.getIdPresupuesto() == egreso.getPresupuestoElegido().getIdPresupuesto()));
+        System.out.println("Estado: " + loContiene);
+
         return loContiene;
 
     }
