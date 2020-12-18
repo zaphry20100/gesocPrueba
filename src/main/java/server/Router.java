@@ -26,8 +26,6 @@ public class Router {
 
         Spark.post("/hola",(req, res) -> "SGSGSDGSDGSGD Heroku World");
 
-        Spark.get("/chau",(req, res) -> "chauchis :D");
-
         UploadFilesController uploadFilesController = new UploadFilesController();
         Spark.post("/uploadEgreso/:nombreArchivo/:idEgreso/:tipoArchivo", uploadFilesController::uploadEgresoFile);
         Spark.post("/uploadPresupuesto/:nombreArchivo/:idPresupuesto/:tipoArchivo", uploadFilesController::uploadPresupuestoFile);
