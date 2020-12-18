@@ -54,7 +54,7 @@ public class Router {
         EgresosRestController egresosRestController = new EgresosRestController();
         Spark.post("/gesoc/egreso/:idEntJur", egresosRestController::crear);                            //ok
         Spark.delete("/gesoc/egreso/:idEntJur/:id", egresosRestController::eliminar);                   //ok
-        Spark.put("/gesoc/egreso/:idEgreso", egresosRestController::modificar);                         //ok
+        Spark.put("/gesoc/egreso/:idEntJur", egresosRestController::modificar);                         //ok
         Spark.options("/gesoc/egreso/:idEntJur/:id", egresosRestController::existe);                    //ok
         Spark.get("/gesoc/egreso/:idEntJur/:id", egresosRestController::mostrar);                       //ok
         Spark.get("/gesoc/egreso/:idEntJur", egresosRestController::mostrarTodos);                      //ok

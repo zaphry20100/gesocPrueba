@@ -159,6 +159,11 @@ public class Egreso {//extends Operacion{
         presupuestos                    = presupuestos.stream().distinct().collect(Collectors.toList());
     }
 
+    public void modificar(Egreso egresoNuevo){
+        //if(egresoNuevo.get)
+
+    }
+
     public List<EgresoXIngreso> getEgresoXIngreso() {
         return egresosXIngresos;
     }

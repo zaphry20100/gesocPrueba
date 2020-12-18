@@ -17,7 +17,7 @@ public class Proveedor {
     private int idProveedor;
 
     @Column(name = "cuit")
-    private int cuit;
+    private long cuit;
 
     @Column(name = "nombre")
     private String nombre;
@@ -46,11 +46,11 @@ public class Proveedor {
         this.estado = false;
     }
 
-    public int getCuit() {
+    public long getCuit() {
         return cuit;
     }
 
-    public void setCuit(int cuit) {
+    public void setCuit(long cuit) {
         this.cuit = cuit;
     }
 
