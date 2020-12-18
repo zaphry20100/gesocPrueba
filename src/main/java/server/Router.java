@@ -29,7 +29,8 @@ public class Router {
         Spark.get("/chau",(req, res) -> "chauchis :D");
 
         UploadFilesController uploadFilesController = new UploadFilesController();
-        Spark.post("/upload/:nombreArchivo/:idEgreso/:tipoArchivo", uploadFilesController::uploadFile);
+        Spark.post("/uploadEgreso/:nombreArchivo/:idEgreso/:tipoArchivo", uploadFilesController::uploadEgresoFile);
+        Spark.post("/uploadPresupuesto/:nombreArchivo/:idPresupuesto/:tipoArchivo", uploadFilesController::uploadPresupuestoFile);
         Spark.get("/download/:idDocCom",uploadFilesController::downloadFile);
 
         EntidadJuridicaRestController entidadJuridicaRestController = new EntidadJuridicaRestController();
