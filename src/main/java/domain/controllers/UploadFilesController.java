@@ -84,6 +84,17 @@ public class UploadFilesController {
             FactoryRepositorio.get(DocumentoComercial.class).modificar(documentoComercial);
         }
 
+        File folder = new File("./");
+        File[] listOfFiles = folder.listFiles();
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isFile()) {
+                System.out.println("File " + listOfFiles[i].getName());
+            } else if (listOfFiles[i].isDirectory()) {
+                System.out.println("Directory " + listOfFiles[i].getName());
+            }
+        }
+
         String jsonObject = (documentoComercial!=null) ? (jsonHelper.convertirAJson(documentoComercial)):(new JSONObject().toString());
 
         return jsonObject;
