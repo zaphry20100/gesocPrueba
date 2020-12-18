@@ -24,9 +24,12 @@ public class Router {
 
         Spark.get("/hola",(req, res) -> "SGSGSDGSDGSGD Heroku World");
 
+        Spark.post("/hola",(req, res) -> "SGSGSDGSDGSGD Heroku World");
+
+        Spark.get("/chau",(req, res) -> "chauchis :D");
+
         UploadFilesController uploadFilesController = new UploadFilesController();
-        Spark.post("/uploadEgreso/:nombreArchivo/:idEgreso/:tipoArchivo", uploadFilesController::uploadEgresoFile);
-        Spark.post("/uploadPresupuesto/:nombreArchivo/:idPresupuesto/:tipoArchivo", uploadFilesController::uploadPresupuestoFile);
+        Spark.post("/upload/:nombreArchivo/:idEgreso/:tipoArchivo", uploadFilesController::uploadFile);
         Spark.get("/download/:idDocCom",uploadFilesController::downloadFile);
 
         EntidadJuridicaRestController entidadJuridicaRestController = new EntidadJuridicaRestController();
@@ -36,7 +39,7 @@ public class Router {
         Spark.options("/dev/entJuridica/:id", entidadJuridicaRestController::existe);                   // ok
         Spark.get("/dev/entJuridica/:id", entidadJuridicaRestController::mostrar);                      // ok
         Spark.get("/dev/entJuridica", entidadJuridicaRestController::mostrarTodos);                     // ok
-        Spark.post("/dev/entJuridica-realciones", entidadJuridicaRestController::crearRelacionesExt);   // ok
+        Spark.post("/dev/entJuridica-realciones", entidadJuridicaRestController::crearRelacionesExt);
 
         // ABML para UI
         EntidadbaseRestController entidadbaseRestController = new EntidadbaseRestController();
@@ -51,7 +54,7 @@ public class Router {
         EgresosRestController egresosRestController = new EgresosRestController();
         Spark.post("/gesoc/egreso/:idEntJur", egresosRestController::crear);                            //ok
         Spark.delete("/gesoc/egreso/:idEntJur/:id", egresosRestController::eliminar);                   //ok
-        Spark.put("/gesoc/egreso/:idEntJur", egresosRestController::modificar);                         //ok
+        Spark.put("/gesoc/egreso/:idEgreso", egresosRestController::modificar);                         //ok
         Spark.options("/gesoc/egreso/:idEntJur/:id", egresosRestController::existe);                    //ok
         Spark.get("/gesoc/egreso/:idEntJur/:id", egresosRestController::mostrar);                       //ok
         Spark.get("/gesoc/egreso/:idEntJur", egresosRestController::mostrarTodos);                      //ok

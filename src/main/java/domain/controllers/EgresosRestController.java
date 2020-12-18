@@ -68,9 +68,8 @@ public class EgresosRestController{
     }
 
     public String modificar(Request request, Response response){
-        Egreso egresoNuevo = new Gson().fromJson(request.body(), Egreso.class);
-        Egreso egreso = FactoryRepositorio.get(Egreso.class).buscar(egresoNuevo.getIdEgreso());
-        egreso.modificar(egresoNuevo);
+        Egreso egreso = new Gson().fromJson(request.body(), Egreso.class);
+        egreso.setIdEgreso(new Integer(request.params("idEgreso")));
         FactoryRepositorio.get(Egreso.class).modificar(egreso);
         response.type("application/json");
         return new JSONObject().put("id", egreso.getIdEgreso()).toString();
