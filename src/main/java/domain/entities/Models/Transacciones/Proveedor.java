@@ -17,7 +17,7 @@ public class Proveedor {
     private int idProveedor;
 
     @Column(name = "cuit")
-    private int cuit;
+    private long cuit;
 
     @Column(name = "nombre")
     private String nombre;
