@@ -46,11 +46,11 @@ public class Proveedor {
         this.estado = false;
     }
 
-    public int getCuit() {
+    public long getCuit() {
         return cuit;
     }
 
-    public void setCuit(int cuit) {
+    public void setCuit(long cuit) {
         this.cuit = cuit;
     }
 
