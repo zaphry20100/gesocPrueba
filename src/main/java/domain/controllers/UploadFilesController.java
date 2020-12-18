@@ -30,17 +30,34 @@ public class UploadFilesController {
 
         Egreso egreso = FactoryRepositorio.get(Egreso.class).buscar(idEgreso);
 
-        DocumentoComercial documentoComercial = new DocumentoComercial();
-        documentoComercial.setEgreso(egreso);
-        documentoComercial.setNumeroDocCom(0);
-        documentoComercial.setPath("./" + nombreArchivo + "." + tipoArchivo);
-        documentoComercial.setTipo(tipoArchivo);
+        DocumentoComercial documentoComercial;
 
-        FactoryRepositorio.get(DocumentoComercial.class).agregar(documentoComercial);
+        if(egreso.getDocCom() == null){
 
-        egreso.setDocCom(documentoComercial);
-        FactoryRepositorio.get(Egreso.class).modificar(egreso);
+            documentoComercial = new DocumentoComercial();
+            documentoComercial.setEgreso(egreso);
+            documentoComercial.setNumeroDocCom(0);
+            documentoComercial.setPath("./" + nombreArchivo + "." + tipoArchivo);
+            documentoComercial.setTipo(tipoArchivo);
+            FactoryRepositorio.get(DocumentoComercial.class).agregar(documentoComercial);
+            egreso.setDocCom(documentoComercial);
+            FactoryRepositorio.get(Egreso.class).modificar(egreso);
+            crearArchivo(request, nombreArchivo, tipoArchivo);
+        }else{
+            documentoComercial = egreso.getDocCom();
+            File file = new File(documentoComercial.getPath());
+            file.delete();
+            documentoComercial.setPath("./" + nombreArchivo + "." + tipoArchivo);
+            crearArchivo(request, nombreArchivo, tipoArchivo);
+            FactoryRepositorio.get(DocumentoComercial.class).modificar(documentoComercial);
+        }
 
+        String jsonObject = (documentoComercial!=null) ? (jsonHelper.convertirAJson(documentoComercial)):(new JSONObject().toString());
+
+        return jsonObject;
+    }
+
+    private void crearArchivo(Request request, String nombreArchivo, String tipoArchivo) {
         String location = "./";  // the directory location where files will be stored
         long maxFileSize = 100000000;  // the maximum size allowed for uploaded files
         long maxRequestSize = 100000000;  // the maximum size allowed for multipart/form-data requests
@@ -77,11 +94,6 @@ public class UploadFilesController {
         multipartConfigElement = null;
         parts = null;
         uploadedFile = null;
-
-        String jsonObject = (documentoComercial!=null) ? (jsonHelper.convertirAJson(documentoComercial)):(new JSONObject().toString());
-
-
-        return jsonObject;
     }
 
     public Response downloadFile(Request request, Response response) {
