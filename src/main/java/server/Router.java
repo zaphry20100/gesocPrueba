@@ -39,7 +39,7 @@ public class Router {
         Spark.options("/dev/entJuridica/:id", entidadJuridicaRestController::existe);                   // ok
         Spark.get("/dev/entJuridica/:id", entidadJuridicaRestController::mostrar);                      // ok
         Spark.get("/dev/entJuridica", entidadJuridicaRestController::mostrarTodos);                     // ok
-        Spark.post("/dev/entJuridica-realciones", entidadJuridicaRestController::crearRelacionesExt);
+        Spark.post("/dev/entJuridica-realciones", entidadJuridicaRestController::crearRelacionesExt);   // ok
 
         // ABML para UI
         EntidadbaseRestController entidadbaseRestController = new EntidadbaseRestController();

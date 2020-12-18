@@ -33,7 +33,6 @@ public class UploadFilesController {
         DocumentoComercial documentoComercial;
 
         if(egreso.getDocCom() == null){
-
             documentoComercial = new DocumentoComercial();
             documentoComercial.setEgreso(egreso);
             documentoComercial.setNumeroDocCom(0);

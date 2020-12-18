@@ -10,7 +10,11 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
-            <property name="javax.persistence.jdbc.url" value=""/>
+            
+            <property name="hibernate.connection.url" value="jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_79514f6d84d71a9?reconnect=true" />
+            <property name="hibernate.connection.username" value="b96b6bd2352df2" />
+            <property name="hibernate.connection.password" value="7bab450c" />
+<!--            <property name="javax.persistence.jdbc.url" value=""/>-->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.show_sql" value="true" />
