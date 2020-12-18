@@ -2,6 +2,7 @@ package domain.controllers;
 
 import domain.entities.Models.Transacciones.DocumentoComercial;
 import domain.entities.Models.Transacciones.Egreso;
+import domain.entities.Models.Transacciones.Presupuesto;
 import domain.repositories.factories.FactoryRepositorio;
 import org.json.JSONObject;
 import spark.Request;
@@ -23,7 +24,36 @@ public class UploadFilesController {
     JSONHelper jsonHelper = new JSONHelper();
 
     public String uploadPresupuestoFile(Request request, Response response){
-        return "";
+        String nombreArchivo = request.params("nombreArchivo");
+        int idPresupuesto = new Integer(request.params("idPresupuesto"));
+        String tipoArchivo = request.params("tipoArchivo");
+
+        Presupuesto presupuesto = FactoryRepositorio.get(Presupuesto.class).buscar(idPresupuesto);
+
+        DocumentoComercial documentoComercial;
+
+        if(presupuesto.getDocCom() == null){
+            documentoComercial = new DocumentoComercial();
+            documentoComercial.setPresupuesto(presupuesto);
+            documentoComercial.setNumeroDocCom(0);
+            documentoComercial.setPath("./" + nombreArchivo + "." + tipoArchivo);
+            documentoComercial.setTipo(tipoArchivo);
+            FactoryRepositorio.get(DocumentoComercial.class).agregar(documentoComercial);
+            presupuesto.setDocCom(documentoComercial);
+            FactoryRepositorio.get(Presupuesto.class).modificar(presupuesto);
+            crearArchivo(request, nombreArchivo, tipoArchivo);
+        }else{
+            documentoComercial = presupuesto.getDocCom();
+            File file = new File(documentoComercial.getPath());
+            file.delete();
+            documentoComercial.setPath("./" + nombreArchivo + "." + tipoArchivo);
+            crearArchivo(request, nombreArchivo, tipoArchivo);
+            FactoryRepositorio.get(DocumentoComercial.class).modificar(documentoComercial);
+        }
+
+        String jsonObject = (documentoComercial!=null) ? (jsonHelper.convertirAJson(documentoComercial)):(new JSONObject().toString());
+
+        return jsonObject;
     }
 
     public String uploadEgresoFile(Request request, Response response){
@@ -54,7 +84,7 @@ public class UploadFilesController {
             FactoryRepositorio.get(DocumentoComercial.class).modificar(documentoComercial);
         }
 
-        String jsonObject = (documentoComercial!=null) ? (jsonHelper.convertirAJson(documentoComercial)):(new JSONObject().toString());	        FactoryRepositorio.get(DocumentoComercial.class).agregar(documentoComercial);
+        String jsonObject = (documentoComercial!=null) ? (jsonHelper.convertirAJson(documentoComercial)):(new JSONObject().toString());
 
         return jsonObject;
 
