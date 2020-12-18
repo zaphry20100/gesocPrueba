@@ -23,7 +23,7 @@ public class UploadFilesController {
     JSONHelper jsonHelper = new JSONHelper();
 
     public String uploadPresupuestoFile(Request request, Response response){
-
+        return "";
     }
 
     public String uploadEgresoFile(Request request, Response response){
