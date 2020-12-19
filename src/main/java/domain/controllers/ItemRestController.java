@@ -44,7 +44,7 @@ public class ItemRestController {
         itemOriginal.setValor(item.getValor());
         FactoryRepositorio.get(EntidadJuridica.class).modificar(itemOriginal);
         response.type("application/json");
-        return new JSONObject().put("id", item.getIdItem()).toString();
+        return new JSONObject().put("id", itemOriginal.getIdItem()).toString();
     }
 
     public String eliminar(Request request, Response response){
