@@ -147,8 +147,7 @@ public class UploadFilesController {
 
         String[] filename = docComercial.getPath().split("/");
 
-
-        response.header("Content-disposition", "attachment; filename=;" + filename[filename.length - 1]);
+        response.header("Content-disposition", "attachment; filename=" + filename[filename.length - 1] + ";");
 
         File file = new File(docComercial.getPath());
         OutputStream outputStream = null;
