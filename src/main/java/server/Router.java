@@ -22,11 +22,11 @@ public class Router {
 
     private static void configure() {
 
-        Spark.get("/hola",(req, res) -> "SGSGSDGSDGSGD Heroku World");
+        //Spark.get("/hola",(req, res) -> "SGSGSDGSDGSGD Heroku World");
 
         Spark.post("/hola",(req, res) -> "SGSGSDGSDGSGD Heroku World");
 
-        Spark.get("/chau",(req, res) -> "chauchis :D");
+        //Spark.get("/chau",(req, res) -> "chauchis :D");
 
         UploadFilesController uploadFilesController = new UploadFilesController();
         Spark.post("/uploadEgreso/:nombreArchivo/:idEgreso/:tipoArchivo", uploadFilesController::uploadEgresoFile);
@@ -35,7 +35,7 @@ public class Router {
 
         EntidadJuridicaRestController entidadJuridicaRestController = new EntidadJuridicaRestController();
         Spark.post("/dev/entJuridica", entidadJuridicaRestController::crear);                           // ok
-        Spark.delete("/dev/entJuridica/:id", entidadJuridicaRestController::eliminar);                  // ok
+        //Spark.delete("/dev/entJuridica/:id", entidadJuridicaRestController::eliminar);                  // ok
         //Spark.put("/dev/entJuridica", entidadJuridicaRestController::modificar);                        // ok
         //Spark.options("/dev/entJuridica/:id", entidadJuridicaRestController::existe);                   // ok
         Spark.get("/dev/entJuridica/:id", entidadJuridicaRestController::mostrar);                      // ok
@@ -45,7 +45,7 @@ public class Router {
         // ABML para UI
         EntidadbaseRestController entidadbaseRestController = new EntidadbaseRestController();
         Spark.post("/gesoc/entBase/:idEntJur", entidadbaseRestController::crear);                       //ok
-        Spark.delete("/gesoc/entBase/:idEntJur/:id", entidadbaseRestController::eliminar);              //ok
+        //Spark.delete("/gesoc/entBase/:idEntJur/:id", entidadbaseRestController::eliminar);              //ok
         //Spark.put("/gesoc/entBase/:idEntJur", entidadbaseRestController::modificar);                    //ok
         //Spark.options("/gesoc/entBase/:idEntJur/:id", entidadbaseRestController::existe);               //ok
         Spark.get("/gesoc/entBase/:idEntJur/:id", entidadbaseRestController::mostrar);                  //ok
@@ -54,7 +54,7 @@ public class Router {
 
         EgresosRestController egresosRestController = new EgresosRestController();
         Spark.post("/gesoc/egreso/:idEntJur", egresosRestController::crear);                            //ok
-        Spark.delete("/gesoc/egreso/:idEntJur/:id", egresosRestController::eliminar);                   //ok
+        //Spark.delete("/gesoc/egreso/:idEntJur/:id", egresosRestController::eliminar);                   //ok
         //Spark.put("/gesoc/egreso/:idEgreso", egresosRestController::modificar);                         //ok
         //Spark.options("/gesoc/egreso/:idEntJur/:id", egresosRestController::existe);                    //ok
         Spark.get("/gesoc/egreso/:idEntJur/:id", egresosRestController::mostrar);                       //ok
@@ -68,7 +68,7 @@ public class Router {
 
         IngresosRestController ingresosRestController = new IngresosRestController();
         Spark.post("/gesoc/ingreso/:idEntJur", ingresosRestController::crear);                          //
-        Spark.delete("/gesoc/ingreso/:idEntJur/:id", ingresosRestController::eliminar);                 //
+        //Spark.delete("/gesoc/ingreso/:idEntJur/:id", ingresosRestController::eliminar);                 //
         //Spark.put("/gesoc/ingreso/:idEntJur", ingresosRestController::modificar);                       //
         //Spark.options("/gesoc/ingreso/:idEntJur/:id", ingresosRestController::existe);                  //
         Spark.get("/gesoc/ingreso/:idEntJur/:id", ingresosRestController::mostrar);                     //
@@ -76,7 +76,7 @@ public class Router {
 
         ProveedorRestController proveedorRestController = new ProveedorRestController();
         Spark.post("/gesoc/proveedor/:idEntJur", proveedorRestController::crear);                       //
-        Spark.delete("/gesoc/proveedor/:idEntJur/:id", proveedorRestController::eliminar);              //
+        //Spark.delete("/gesoc/proveedor/:idEntJur/:id", proveedorRestController::eliminar);              //
         //Spark.put("/gesoc/proveedor/:idEntJur", proveedorRestController::modificar);                    //
         //Spark.options("/gesoc/proveedor/:id", proveedorRestController::existe);                         //
         Spark.get("/gesoc/proveedor/:idEntJur/:id", proveedorRestController::mostrar);                  //
@@ -84,7 +84,7 @@ public class Router {
 
         PresupuestoRestController presupuestoRestController = new PresupuestoRestController();
         Spark.post("/gesoc/presupuesto/:idEntJur", presupuestoRestController::crear);                       //
-        Spark.delete("/gesoc/presupuesto/:idEntJur/:id", presupuestoRestController::eliminar);              //
+        //Spark.delete("/gesoc/presupuesto/:idEntJur/:id", presupuestoRestController::eliminar);              //
         //Spark.put("/gesoc/presupuesto/:idEntJur", presupuestoRestController::modificar);                    //
         //Spark.options("/gesoc/presupuesto/:idEntJur/:id", presupuestoRestController::existe);               //
         Spark.get("/gesoc/presupuesto/:idEntJur/:id", presupuestoRestController::mostrar);                  //
@@ -92,7 +92,7 @@ public class Router {
 
         ItemRestController itemRestController = new ItemRestController();
         Spark.post("/gesoc/item/:idEntJur", itemRestController::crear);                                               //
-        Spark.delete("/gesoc/item/:idEntJur/:id", itemRestController::eliminar);                                      //
+        //Spark.delete("/gesoc/item/:idEntJur/:id", itemRestController::eliminar);                                      //
         Spark.put("/gesoc/item/:idEntJur/:id", itemRestController::modificar);                                        //
         //Spark.options("/gesoc/item/:idEntJur/:id", itemRestController::existe);                                       //
         Spark.get("/gesoc/item/:idEntJur/:id", itemRestController::mostrar);                                          //
@@ -100,7 +100,7 @@ public class Router {
 
         DocumentoComercialController documentoComercialController = new DocumentoComercialController();
         Spark.post("/gesoc/docCom", documentoComercialController::crear);                                   //
-        Spark.delete("/gesoc/docCom/:id", documentoComercialController::eliminar);                          //
+        //Spark.delete("/gesoc/docCom/:id", documentoComercialController::eliminar);                          //
         //Spark.put("/gesoc/docCom/:id", documentoComercialController::modificar);                            //
         //Spark.options("/gesoc/docCom/:id", documentoComercialController::existe);                           //
         Spark.get("/gesoc/docCom/:id", documentoComercialController::mostrar);                              //
@@ -108,7 +108,7 @@ public class Router {
 
         MensajesRestController mensajesRestController = new MensajesRestController();
         Spark.post("/gesoc/mensaje/:idBandeja", mensajesRestController::crear);                                //
-        Spark.delete("/gesoc/mensaje/:idBandeja/:id", mensajesRestController::eliminar);                       //
+        //Spark.delete("/gesoc/mensaje/:idBandeja/:id", mensajesRestController::eliminar);                       //
         //Spark.put("/gesoc/mensaje/:idBandeja/:id", mensajesRestController::modificar);                         //
         //Spark.options("/gesoc/mensaje/:idBandeja/:id", mensajesRestController::existe);                        //
         Spark.get("/gesoc/mensaje/:idBandeja/:id", mensajesRestController::mostrar);                           //
@@ -118,7 +118,7 @@ public class Router {
 
         UsuarioRestController usuarioRestController = new UsuarioRestController();
         Spark.post("/gesoc/usuario/:idEntJur", usuarioRestController::crear);                               //
-        Spark.delete("/gesoc/usuario/:idEntJur/:id", usuarioRestController::eliminar);                      //
+        //Spark.delete("/gesoc/usuario/:idEntJur/:id", usuarioRestController::eliminar);                      //
         //Spark.put("/gesoc/usuario/:idEntJur", usuarioRestController::modificar);                            //
         //Spark.options("/gesoc/usuario/:idEntJur/:id", usuarioRestController::existe);                       //
         Spark.get("/gesoc/usuario/:idEntJur/:id", usuarioRestController::mostrar);                          //
@@ -126,7 +126,7 @@ public class Router {
 
         DireccionRestController direccionRestController = new DireccionRestController();
         //Spark.post("/gesoc/direccion/:idEntJur", direccionRestController::crear);                             //
-        //Spark.delete("/gesoc/direccion/:idEntJur/:id", direccionRestController::eliminar);                    //
+        ////Spark.delete("/gesoc/direccion/:idEntJur/:id", direccionRestController::eliminar);                    //
         //Spark.put("/gesoc/direccion/:idEntJur", direccionRestController::modificar);                          //
         //Spark.options("/gesoc/direccion/:idEntJur/:id", direccionRestController::existe);                     //
         //Spark.get("/gesoc/direccion/:idEntJur/:id", direccionRestController::mostrar);                        //
@@ -134,7 +134,7 @@ public class Router {
 
         CriteriosRestController criteriosRestController = new CriteriosRestController();
         Spark.post("/gesoc/criterios/:idEntJur", criteriosRestController::crear);                                    //
-        Spark.delete("/gesoc/criterios/:idEntJur/:id", criteriosRestController::eliminar);                           //
+        //Spark.delete("/gesoc/criterios/:idEntJur/:id", criteriosRestController::eliminar);                           //
         //Spark.put("/gesoc/criterios/:idEntJur", criteriosRestController::modificar);                                 //
         //Spark.options("/gesoc/criterios/:idEntJur/:id", criteriosRestController::existe);                            //
         Spark.get("/gesoc/criterios/:idEntJur/:id", criteriosRestController::mostrar);                               //
@@ -142,7 +142,7 @@ public class Router {
 
         CategoriasRestController categoriasRestController = new CategoriasRestController();
         Spark.post("/gesoc/categorias/:idEntJur", categoriasRestController::crear);                                  //
-        Spark.delete("/gesoc/categorias/:idEntJur/:id", categoriasRestController::eliminar);                         //
+        //Spark.delete("/gesoc/categorias/:idEntJur/:id", categoriasRestController::eliminar);                         //
         //Spark.put("/gesoc/categorias/:idEntJur", categoriasRestController::modificar);                               //
         //Spark.options("/gesoc/categorias/:idEntJur/:id", categoriasRestController::existe);                          //
         Spark.get("/gesoc/categorias/:idEntJur/:id", categoriasRestController::mostrar);                             //
