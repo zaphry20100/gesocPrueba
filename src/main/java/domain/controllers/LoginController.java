@@ -54,6 +54,7 @@ public class LoginController {
                 responseLogin.status = true;
                 responseLogin.role = usuarioEncontrado.getRol().getDescripcion();
                 responseLogin.idEntidadJuridica = usuarioEncontrado.getEntidadJuridica().getIdEntidadJuridica();
+                responseLogin.idUsuario = usuarioEncontrado.getIdUsuario();
                 return jsonHelper.convertirAJson(responseLogin);
             }else{
                 responseLogin.status = false;

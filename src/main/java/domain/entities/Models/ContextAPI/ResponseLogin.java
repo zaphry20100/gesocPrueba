@@ -5,4 +5,5 @@ public class ResponseLogin {
     public String role;
     public boolean status;
     public int idEntidadJuridica;
+    public int idUsuario;
 }
