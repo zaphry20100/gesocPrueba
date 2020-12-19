@@ -99,12 +99,12 @@ public class Router {
         Spark.get("/gesoc/item/:idEntJur", itemRestController::mostrarTodos);                                         //
 
         DocumentoComercialController documentoComercialController = new DocumentoComercialController();
-        Spark.post("/gesoc/docCom", documentoComercialController::crear);                                   //
+        //Spark.post("/gesoc/docCom", documentoComercialController::crear);                                   //
         //Spark.delete("/gesoc/docCom/:id", documentoComercialController::eliminar);                          //
         //Spark.put("/gesoc/docCom/:id", documentoComercialController::modificar);                            //
         //Spark.options("/gesoc/docCom/:id", documentoComercialController::existe);                           //
-        Spark.get("/gesoc/docCom/:id", documentoComercialController::mostrar);                              //
-        Spark.get("/gesoc/docCom", documentoComercialController::mostrarTodos);                             //
+        //Spark.get("/gesoc/docCom/:id", documentoComercialController::mostrar);                              //
+        //Spark.get("/gesoc/docCom", documentoComercialController::mostrarTodos);                             //
 
         MensajesRestController mensajesRestController = new MensajesRestController();
         Spark.post("/gesoc/mensaje/:idBandeja", mensajesRestController::crear);                                //

@@ -40,7 +40,7 @@ public class Main {
 //        }
 
         Spark.port(getHerokuAssignedPort());
-        get("/hello", (req, res) -> "Hello Heroku World");
+        //get("/hello", (req, res) -> "Hello Heroku World");
         Router.init();
         DebugScreen.enableDebugScreen();
 
