@@ -40,7 +40,9 @@ public class ItemRestController {
 
     public String modificar(Request request, Response response){
         Item item = new Gson().fromJson(request.body(), Item.class);
-        FactoryRepositorio.get(EntidadJuridica.class).modificar(item);
+        Item itemOriginal = FactoryRepositorio.get(Item.class).buscar(new Integer(request.params("id")));
+        itemOriginal.setValor(item.getValor());
+        FactoryRepositorio.get(EntidadJuridica.class).modificar(itemOriginal);
         response.type("application/json");
         return new JSONObject().put("id", item.getIdItem()).toString();
     }
