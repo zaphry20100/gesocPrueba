@@ -23,12 +23,17 @@ import java.util.Collection;
 public class UploadFilesController {
     JSONHelper jsonHelper = new JSONHelper();
 
+    String rutaEgresos = "./Archivos/Egresos";
+    String rutaPresupuestos = "./Archivos/Presupuestos";
+
     public String uploadPresupuestoFile(Request request, Response response){
-        String nombreArchivo = request.params("nombreArchivo");
+        String nombreArchivo = rutaPresupuestos + "/" + request.params("nombreArchivo");
         int idPresupuesto = new Integer(request.params("idPresupuesto"));
         String tipoArchivo = request.params("tipoArchivo");
 
         Presupuesto presupuesto = FactoryRepositorio.get(Presupuesto.class).buscar(idPresupuesto);
+
+        nombreArchivo = nombreArchivo + "_presupuesto"+presupuesto.getIdPresupuesto();
 
         DocumentoComercial documentoComercial;
 
@@ -36,7 +41,7 @@ public class UploadFilesController {
             documentoComercial = new DocumentoComercial();
             documentoComercial.setPresupuesto(presupuesto);
             documentoComercial.setNumeroDocCom(0);
-            documentoComercial.setPath("./" + nombreArchivo + "." + tipoArchivo);
+            documentoComercial.setPath(nombreArchivo + "." + tipoArchivo);
             documentoComercial.setTipo(tipoArchivo);
             FactoryRepositorio.get(DocumentoComercial.class).agregar(documentoComercial);
             presupuesto.setDocCom(documentoComercial);
@@ -46,7 +51,7 @@ public class UploadFilesController {
             documentoComercial = presupuesto.getDocCom();
             File file = new File(documentoComercial.getPath());
             //file.delete();
-            documentoComercial.setPath("./" + nombreArchivo + "." + tipoArchivo);
+            documentoComercial.setPath(nombreArchivo + "." + tipoArchivo);
             crearArchivo(request, nombreArchivo, tipoArchivo);
             FactoryRepositorio.get(DocumentoComercial.class).modificar(documentoComercial);
         }
@@ -57,11 +62,13 @@ public class UploadFilesController {
     }
 
     public String uploadEgresoFile(Request request, Response response){
-        String nombreArchivo = request.params("nombreArchivo");
+        String nombreArchivo = rutaEgresos + "/" + request.params("nombreArchivo");
         int idEgreso = new Integer(request.params("idEgreso"));
         String tipoArchivo = request.params("tipoArchivo");
 
         Egreso egreso = FactoryRepositorio.get(Egreso.class).buscar(idEgreso);
+
+        nombreArchivo = nombreArchivo + "_egreso" + egreso.getIdEgreso();
 
         DocumentoComercial documentoComercial;
 
@@ -69,7 +76,7 @@ public class UploadFilesController {
             documentoComercial = new DocumentoComercial();
             documentoComercial.setEgreso(egreso);
             documentoComercial.setNumeroDocCom(0);
-            documentoComercial.setPath("./" + nombreArchivo + "." + tipoArchivo);
+            documentoComercial.setPath(nombreArchivo + "." + tipoArchivo);
             documentoComercial.setTipo(tipoArchivo);
             FactoryRepositorio.get(DocumentoComercial.class).agregar(documentoComercial);
             egreso.setDocCom(documentoComercial);
@@ -79,7 +86,7 @@ public class UploadFilesController {
             documentoComercial = egreso.getDocCom();
             File file = new File(documentoComercial.getPath());
             //file.delete();
-            documentoComercial.setPath("./" + nombreArchivo + "." + tipoArchivo);
+            documentoComercial.setPath(nombreArchivo + "." + tipoArchivo);
             crearArchivo(request, nombreArchivo, tipoArchivo);
             FactoryRepositorio.get(DocumentoComercial.class).modificar(documentoComercial);
         }
@@ -125,7 +132,7 @@ public class UploadFilesController {
             fName = part.getSubmittedFileName();
             uploadedFile = part;
 
-            Path out = Paths.get("./" + nombreArchivo + "." + tipoArchivo);
+            Path out = Paths.get(nombreArchivo + "." + tipoArchivo);
 
             try (final InputStream in = uploadedFile.getInputStream()) {
                 Files.copy(in, out);
