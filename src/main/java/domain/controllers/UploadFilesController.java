@@ -45,7 +45,7 @@ public class UploadFilesController {
         }else{
             documentoComercial = presupuesto.getDocCom();
             File file = new File(documentoComercial.getPath());
-            file.delete();
+            //file.delete();
             documentoComercial.setPath("./" + nombreArchivo + "." + tipoArchivo);
             crearArchivo(request, nombreArchivo, tipoArchivo);
             FactoryRepositorio.get(DocumentoComercial.class).modificar(documentoComercial);
@@ -78,7 +78,7 @@ public class UploadFilesController {
         }else{
             documentoComercial = egreso.getDocCom();
             File file = new File(documentoComercial.getPath());
-            file.delete();
+            //file.delete();
             documentoComercial.setPath("./" + nombreArchivo + "." + tipoArchivo);
             crearArchivo(request, nombreArchivo, tipoArchivo);
             FactoryRepositorio.get(DocumentoComercial.class).modificar(documentoComercial);
