@@ -89,9 +89,9 @@ public class Egreso {//extends Operacion{
     @OneToMany(mappedBy = "egreso", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Egresoxitem> listaEgresxItem;
 
-    @JsonIdentityReference(alwaysAsId = true)
+    @JsonIgnore
     @OneToMany(mappedBy = "egreso", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    private List<Revisor> revisores;
+    private List<Revisor> intUsuariosRevisores;
 
     @JsonIgnore
     @Transient
@@ -100,6 +100,15 @@ public class Egreso {//extends Operacion{
 
     @Transient
     List<Integer> presupuestos;
+
+    @Transient
+    List<Integer> categorias;
+
+
+
+    @Transient
+    List<Integer> revisores;
+
 
     //Vinculacion
     /*
@@ -120,9 +129,9 @@ public class Egreso {//extends Operacion{
     @OneToMany(mappedBy = "egreso", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<EgresoXIngreso> egresosXIngresos;
 
-    @JsonIdentityReference(alwaysAsId = true)
+    @JsonIgnore
     @OneToMany(mappedBy = "egreso", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    private List<EgresoXCategoria> categorias;
+    private List<EgresoXCategoria> intCategorias;
 
     @JsonIgnore
     @OneToMany(mappedBy = "egreso", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
@@ -134,8 +143,10 @@ public class Egreso {//extends Operacion{
         revisores = new ArrayList<>();
         egresosXIngresos = new ArrayList<>();
         categorias = new ArrayList<>();
-
+        intCategorias = new ArrayList<>();
+        intUsuariosRevisores = new ArrayList<>();
         presupuestos = new ArrayList<>();
+
         resultadoValidacions = new ArrayList<>();
 
         this.quitarRepetidos();
@@ -150,13 +161,15 @@ public class Egreso {//extends Operacion{
 */
 
     public void quitarRepetidos(){
-        listaPresupuestos               = listaPresupuestos.stream().distinct().collect(Collectors.toList());    ;
-        listaEgresxItem                 = listaEgresxItem.stream().distinct().collect(Collectors.toList());      ;
-        revisores                       = revisores.stream().distinct().collect(Collectors.toList());            ;
-        egresosXIngresos                = egresosXIngresos.stream().distinct().collect(Collectors.toList());     ;
-        categorias                      = categorias.stream().distinct().collect(Collectors.toList());;
-        resultadoValidacions            = resultadoValidacions.stream().distinct().collect(Collectors.toList()); ;
+        listaPresupuestos               = listaPresupuestos.stream().distinct().collect(Collectors.toList());
+        listaEgresxItem                 = listaEgresxItem.stream().distinct().collect(Collectors.toList());
+        revisores                       = revisores.stream().distinct().collect(Collectors.toList());
+        egresosXIngresos                = egresosXIngresos.stream().distinct().collect(Collectors.toList());
+        categorias                      = categorias.stream().distinct().collect(Collectors.toList());
+        resultadoValidacions            = resultadoValidacions.stream().distinct().collect(Collectors.toList());
         presupuestos                    = presupuestos.stream().distinct().collect(Collectors.toList());
+        intCategorias                   = intCategorias.stream().distinct().collect(Collectors.toList());
+        intUsuariosRevisores            = intUsuariosRevisores.stream().distinct().collect(Collectors.toList());
     }
 
     public List<EgresoXIngreso> getEgresoXIngreso() {
@@ -264,19 +277,19 @@ public class Egreso {//extends Operacion{
     }
 
     public List<Revisor> getRevisores() {
-        return revisores;
+        return intUsuariosRevisores;
     }
 
     public void setRevisores(List<Revisor> revisores) {
-        this.revisores = revisores;
+        this.intUsuariosRevisores = revisores;
     }
 
     public List<EgresoXCategoria> getCategoriaPresupuestos() {
-        return categorias;
+        return intCategorias;
     }
 
     public void setCategoriaPresupuestos(List<EgresoXCategoria> categoriaPresupuestos) {
-        this.categorias = categoriaPresupuestos;
+        this.intCategorias = categoriaPresupuestos;
     }
 
     public List<ResultadoValidacion> getResultadoValidacions() {
@@ -286,6 +299,23 @@ public class Egreso {//extends Operacion{
     public void setResultadoValidacions(List<ResultadoValidacion> resultadoValidacions) {
         this.resultadoValidacions = resultadoValidacions;
     }
+
+    public List<Integer> getIdsCategorias() {
+        return categorias;
+    }
+
+    public List<Integer> getIdsUsuariosRevisores() {
+        return revisores;
+    }
+
+    public void setIdsCategorias(List<Integer> idsCategorias) {
+        this.categorias = idsCategorias;
+    }
+
+    public void setIdsUsuariosRevisores(List<Integer> idsUsuariosRevisores) {
+        this.revisores = idsUsuariosRevisores;
+    }
+
 
     public JSONObject toJSON(){
         JSONArray ingresos = new JSONArray();

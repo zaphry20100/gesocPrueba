@@ -1,6 +1,9 @@
 package domain.controllers;
 
 import com.google.gson.Gson;
+import domain.entities.Models.Categorias.Categorias.CategoriaPresupuesto;
+import domain.entities.Models.Categorias.EgresoXCategoria;
+import domain.entities.Models.Categorias.PresupuestoXCategoria;
 import domain.entities.Models.ContextAPI.RequestItemXPresupuesto;
 import domain.entities.Models.Entidades.EntidadJuridica;
 import domain.entities.Models.Transacciones.*;
@@ -65,6 +68,10 @@ public class PresupuestoRestController {
             egreso.quitarRepetidos();
             for(Presupuesto presupuesto: egreso.getListaPresupuestos()){
                 presupuesto.quitarRepetidos();
+                presupuesto.getCategorias().forEach(z -> {
+                    presupuesto.getIdsCategorias().add(z.getCategoriaPresupuesto().getIdCategoriaPresupuesto());
+                });
+
             }
             presupuestos.addAll(egreso.getListaPresupuestos());
         }
@@ -81,6 +88,17 @@ public class PresupuestoRestController {
         return result;
     }
 
+
+    private void agregarCategoriaPresupuesto(Presupuesto presupuesto){
+        presupuesto.getIdsCategorias().forEach(x -> {
+            PresupuestoXCategoria presupuestoXCategoria = new PresupuestoXCategoria();
+            presupuestoXCategoria.setCategoriaPresupuesto(FactoryRepositorio.get(CategoriaPresupuesto.class).buscar(x));
+            presupuestoXCategoria.setPresupuesto(presupuesto);
+            FactoryRepositorio.get(PresupuestoXCategoria.class).agregar(presupuestoXCategoria);
+        });
+    }
+
+
     private void crearRelaciones(Presupuesto presupuesto) {
         presupuesto.getItems().stream().forEach(x->{
             Item item = FactoryRepositorio.get(Item.class).buscar(x.idItem);
@@ -91,6 +109,9 @@ public class PresupuestoRestController {
             presupuestoXItem.setPresupuesto(presupuesto);
             FactoryRepositorio.get(PresupuestoXItem.class).agregar(presupuestoXItem);
         });
+
+        agregarCategoriaPresupuesto(presupuesto);
+
         FactoryRepositorio.get(Presupuesto.class).modificar(presupuesto);
     }
 

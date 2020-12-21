@@ -1,6 +1,9 @@
 package domain.controllers;
 
 import com.google.gson.Gson;
+import domain.entities.Models.Categorias.Categorias.CategoriaPresupuesto;
+import domain.entities.Models.Categorias.EgresoXCategoria;
+import domain.entities.Models.Categorias.PresupuestoXCategoria;
 import domain.entities.Models.ContextAPI.RequestEgresoPresupuestos;
 import domain.entities.Models.Transacciones.*;
 import domain.repositories.factories.FactoryRepositorio;
@@ -18,6 +21,25 @@ public class EgresosPresupuestosController {
         response.type("application/json");
         return new JSONObject().put("id", egresoPresupuestos.egreso.getIdEgreso()).toString();
     }
+
+    private void agregarCategoriaEgreso(Egreso egreso){
+        egreso.getIdsCategorias().forEach(x -> {
+            EgresoXCategoria egresoXCategoria = new EgresoXCategoria();
+            egresoXCategoria.setCategoriaPresupuesto(FactoryRepositorio.get(CategoriaPresupuesto.class).buscar(x));
+            egresoXCategoria.setEgreso(egreso);
+            FactoryRepositorio.get(EgresoXCategoria.class).agregar(egresoXCategoria);
+        });
+    }
+
+    private void agregarCategoriaPresupuesto(Presupuesto presupuesto){
+        presupuesto.getIdsCategorias().forEach(x -> {
+            PresupuestoXCategoria presupuestoXCategoria = new PresupuestoXCategoria();
+            presupuestoXCategoria.setCategoriaPresupuesto(FactoryRepositorio.get(CategoriaPresupuesto.class).buscar(x));
+            presupuestoXCategoria.setPresupuesto(presupuesto);
+            FactoryRepositorio.get(PresupuestoXCategoria.class).agregar(presupuestoXCategoria);
+        });
+    }
+
 
     private void crearRelaciones(RequestEgresoPresupuestos egresoPresupuestos){
 
@@ -39,6 +61,10 @@ public class EgresosPresupuestosController {
                 FactoryRepositorio.get(Egreso.class).modificar(egresoPresupuestos.egreso);
             }*/
 
+        });
+        agregarCategoriaEgreso(egresoPresupuestos.egreso);
+        egresoPresupuestos.presupuestos.lista.forEach(x -> {
+            agregarCategoriaPresupuesto(x);
         });
 
         egresoPresupuestos.egreso.setListaPresupuestos(egresoPresupuestos.presupuestos.lista);

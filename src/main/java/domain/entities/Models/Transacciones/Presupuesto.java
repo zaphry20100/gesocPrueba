@@ -60,9 +60,9 @@ public class Presupuesto {
     @JoinColumn(name = "idProveedor", referencedColumnName = "idProveedor")
     private Proveedor proveedor;
 
-    @JsonIdentityReference(alwaysAsId = true)
+    @JsonIgnore
     @OneToMany(mappedBy = "presupuesto", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    private List<PresupuestoXCategoria> categorias;
+    private List<PresupuestoXCategoria> intCategorias;
 
     @JsonIgnore
     @OneToMany(mappedBy = "presupuesto", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
@@ -71,9 +71,15 @@ public class Presupuesto {
     @Transient
     private List<RequestItemXPresupuesto> items;
 
+    @Transient
+    private  List<Integer> categorias;
+
+
+
     public Presupuesto() {
         listaPresupuestoXItem = new ArrayList<>();
         categorias = new ArrayList<>();
+        intCategorias = new ArrayList<>();
         items = new ArrayList<>();
     }
 
@@ -82,6 +88,7 @@ public class Presupuesto {
                 .collect(Collectors.collectingAndThen(
                         Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(x -> x.getIdPresupuestoXItem()))),
                         ArrayList::new));
+        this.intCategorias = this.intCategorias.stream().distinct().collect(Collectors.toList());
     }
 
     public int getIdPresupuesto() {
@@ -123,13 +130,20 @@ public class Presupuesto {
     public void setDetalles(String detalles) {
         this.detalles = detalles;
     }
+    public List<Integer> getIdsCategorias() {
+        return categorias;
+    }
+
+    public void setIdsCategorias(List<Integer> idsCategorias) {
+        this.categorias = idsCategorias;
+    }
 
     public List<PresupuestoXCategoria> getCategorias() {
-        return this.categorias;
+        return this.intCategorias;
     }
 
     public void setCategorias(List<PresupuestoXCategoria> categoria) {
-        this.categorias = categoria;
+        this.intCategorias = categoria;
     }
 
     public void darBaja(){

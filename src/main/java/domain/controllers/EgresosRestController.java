@@ -6,6 +6,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import domain.entities.Models.Categorias.Categorias.CategoriaPresupuesto;
+import domain.entities.Models.Categorias.EgresoXCategoria;
+import domain.entities.Models.ContextAPI.RequestCategoriaEgreso;
 import domain.entities.Models.ContextAPI.RequestPresupuestos;
 import domain.entities.Models.ContextAPI.RequestRecategorizar;
 import domain.entities.Models.ContextAPI.RequestRevisores;
@@ -62,6 +65,19 @@ public class EgresosRestController{
     public String mostrar(Request request, Response response){
         Egreso egreso  = FactoryRepositorio.get(Egreso.class).buscar(new Integer(request.params("id")));
         egreso.quitarRepetidos();
+
+        egreso.getCategoriaPresupuestos().forEach( z -> {
+            egreso.getIdsCategorias().add(z.getCategoriaPresupuesto().getIdCategoriaPresupuesto());
+        });
+        egreso.getRevisores().forEach( z -> {
+            egreso.getIdsUsuariosRevisores().add(z.getUsuario().getIdUsuario());
+        });
+
+        egreso.getListaPresupuestos().forEach(x -> {
+            x.quitarRepetidos();
+        });
+
+
         String jsonObject = (egreso!=null) ? (jsonHelper.convertirAJson(egreso)):(new JSONObject().toString());
         response.type("application/json");
         return jsonObject;
@@ -98,7 +114,18 @@ public class EgresosRestController{
                 x.getPresupuestos().add(y.getIdPresupuesto());
             });
             x.setPresupuestos(x.getPresupuestos().stream().distinct().collect(Collectors.toList()));
+
+            x.getCategoriaPresupuestos().forEach( z -> {
+                x.getIdsCategorias().add(z.getCategoriaPresupuesto().getIdCategoriaPresupuesto());
+            });
+            x.getRevisores().forEach( z -> {
+                x.getIdsUsuariosRevisores().add(z.getUsuario().getIdUsuario());
+            });
+
+
+
         });
+
 
         response.type("application/json");
         String result = new JSONObject().toString();
@@ -115,6 +142,14 @@ public class EgresosRestController{
         return jsonHelper.convertirAJson(egresos);
     }
 
+    private void agregarCategoriaEgreso(Egreso egreso){
+        egreso.getIdsCategorias().forEach(x -> {
+            EgresoXCategoria egresoXCategoria = new EgresoXCategoria();
+            egresoXCategoria.setCategoriaPresupuesto(FactoryRepositorio.get(CategoriaPresupuesto.class).buscar(x));
+            egresoXCategoria.setEgreso(egreso);
+            FactoryRepositorio.get(EgresoXCategoria.class).agregar(egresoXCategoria);
+        });
+    }
 
 
     private void crearRelaciones(Egreso egreso) {
@@ -141,6 +176,9 @@ public class EgresosRestController{
             egresoxitem.setEgreso(egreso);
             FactoryRepositorio.get(Egresoxitem.class).agregar(egresoxitem);
         });
+
+        //Crear tabla intermedia de Categoria x Egreso
+        agregarCategoriaEgreso(egreso);
 
         // --------------- MODIFICAR ------------------
         FactoryRepositorio.get(Egreso.class).modificar(egreso);
