@@ -34,7 +34,7 @@ public class VinculadorService {
 
 
         this.retrofit = new Retrofit.Builder()
-                .baseUrl("https://vinculador-gesoc.azurewebsites.net/")
+                .baseUrl("https://vinc-gesoc.azurewebsites.net/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

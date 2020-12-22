@@ -12,9 +12,9 @@
         <properties>
 <!--            <property name="javax.persistence.jdbc.url" value=""/>-->
 
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://l0ebsc9jituxzmts.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/j4wrfwtbqgvtsbt1"/>
-            <property name="javax.persistence.jdbc.user" value="tjn92zj4t480ywd3"/>
-            <property name="javax.persistence.jdbc.password" value="fz97zakgl8oria0g"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://l0ebsc9jituxzmts.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ci4m24slpfqm3p90"/>
+            <property name="javax.persistence.jdbc.user" value="bl4f6twx4ka0wrqe"/>
+            <property name="javax.persistence.jdbc.password" value="rdk0t51md85zjgxr"/>
 
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.archive.autodetection" value="class"/>
