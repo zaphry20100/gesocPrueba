@@ -13,8 +13,8 @@ public class Router {
 
     public static void init() {
 //        Spark.staticFileLocation("/public");
-        Spark.before((rq, rp) -> rp.header("Access-Control-Allow-Origin", "*"));
-        Spark.before((rq, rp) -> rp.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept"));
+        //Spark.before((rq, rp) -> rp.header("Access-Control-Allow-Origin", "*"));
+        //Spark.before((rq, rp) -> rp.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept"));
 
 
         Router.configure();

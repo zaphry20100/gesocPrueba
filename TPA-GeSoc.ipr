@@ -901,17 +901,6 @@ C:/DEV/UTN/DDS/TPA-GeSoc/2020-mi-no-group-01/src/main/resources/META-INF/persist
         <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/14.0.1/guava-14.0.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: com.google.protobuf:protobuf-java:3.6.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/3.6.1/protobuf-java-3.6.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/3.6.1/protobuf-java-3.6.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/3.6.1/protobuf-java-3.6.1-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: com.mchange:c3p0:0.9.5.2">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/com/mchange/c3p0/0.9.5.2/c3p0-0.9.5.2.jar!/" />
@@ -1099,15 +1088,15 @@ C:/DEV/UTN/DDS/TPA-GeSoc/2020-mi-no-group-01/src/main/resources/META-INF/persist
         <root url="jar://$MAVEN_REPOSITORY$/me/xuender/unidecode/0.0.7/unidecode-0.0.7-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: mysql:mysql-connector-java:8.0.18">
+    <library name="Maven: mysql:mysql-connector-java:5.1.26">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.18/mysql-connector-java-8.0.18.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.26/mysql-connector-java-5.1.26.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.18/mysql-connector-java-8.0.18-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.26/mysql-connector-java-5.1.26-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.18/mysql-connector-java-8.0.18-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.26/mysql-connector-java-5.1.26-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.antlr:antlr4-runtime:4.5.1-1">
