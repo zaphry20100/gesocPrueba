@@ -10,6 +10,7 @@ import spark.Request;
 import spark.Response;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProveedorRestController {
 
@@ -52,7 +53,9 @@ public class ProveedorRestController {
     }
 
     public String mostrarTodos(Request request, Response response) {
+
         List<Proveedor> proveedores = FactoryRepositorio.get(Proveedor.class).buscarTodos();
+        proveedores = proveedores.stream().filter(x-> x.getEntidadJuridica().getIdEntidadJuridica() == new Integer(request.params("idEntJur"))).collect(Collectors.toList());
         String result = new JSONObject().toString();
         response.type("application/json");
         if (! proveedores.isEmpty()){

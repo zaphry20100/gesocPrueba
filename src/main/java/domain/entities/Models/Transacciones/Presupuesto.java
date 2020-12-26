@@ -61,7 +61,6 @@ public class Presupuesto {
     @JoinColumn(name = "idProveedor", referencedColumnName = "idProveedor")
     private Proveedor proveedor;
 
-
     @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne
     @JoinColumn(name = "idEntidadJuridica", referencedColumnName = "idEntidadJuridica")

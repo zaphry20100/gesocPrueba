@@ -96,6 +96,8 @@ public class CategoriasRestController {
         for(CategoriaPresupuesto categoriaPresupuesto:categoriaPresupuestos){
             categoriaPresupuesto.quitarRepetidos();
         }
+
+        categoriaPresupuestos = categoriaPresupuestos.stream().filter(x-> x.getEntidadjuridica().getIdEntidadJuridica() == new Integer(request.params("idEntJur"))).collect(Collectors.toList());
         response.type("application/json");
         String result = new JSONObject().toString();
         if (! categoriaPresupuestos.isEmpty()){

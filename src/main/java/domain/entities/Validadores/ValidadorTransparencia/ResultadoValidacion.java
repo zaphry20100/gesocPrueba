@@ -72,6 +72,6 @@ public class ResultadoValidacion {
 
     @Override
     public String toString() {
-        return "Estimado usuario vengo a informarle el resultado del egreso " + this.getEgreso().getIdEgreso() + " esto: " +this.getDetalles();
+        return "Estimado usuario, El egreso " + this.getEgreso().getIdEgreso() + " tuvo este resultado de validación: " +this.getDetalles();
     }
 }

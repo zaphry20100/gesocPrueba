@@ -63,6 +63,7 @@ public class CriteriosRestController {
         for(CriterioPresupuesto criterioPresupuesto:criterioPresupuestos){
             criterioPresupuesto.quitarRepetidos();
         }
+        criterioPresupuestos = criterioPresupuestos.stream().filter(x-> x.getEntidadJuridica().getIdEntidadJuridica() == new Integer(request.params("idEntJur"))).collect(Collectors.toList());
         response.type("application/json");
         String result = new JSONObject().toString();
         if (! criterioPresupuestos.isEmpty()){

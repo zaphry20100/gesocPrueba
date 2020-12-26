@@ -69,7 +69,13 @@ public class MensajesRestController {
 
     public String mostrarMensajes(Request request, Response response) {
         Usuario usuario = FactoryRepositorio.get(Usuario.class).buscar(new Integer(request.params("idUser")));
-        ResponseMensajes mensajes = usuario.getBandejaMensaje().leerMensajes();//FactoryRepositorio.get(Mensaje.class).buscarTodos();
+        //ResponseMensajes mensajes = usuario.getBandejaMensaje().leerMensajes();
+        List<Mensaje> mensajesList = FactoryRepositorio.get(Mensaje.class).buscarTodos();
+        mensajesList = mensajesList.stream().filter(x->x.getBandejamensaje().getIdbandejamensaje() == usuario.getBandejaMensaje().getIdbandejamensaje()).collect(Collectors.toList());
+        ResponseMensajes mensajes = new ResponseMensajes();
+        mensajes.mensajes = mensajesList;
+        mensajes.cantidadMensajesNuevos = mensajesList.stream().filter(x-> !x.isLeido() ).collect(Collectors.toList()).size();
+        mensajesList.forEach(y-> y.setLeido(true));
         String result = new JSONObject().toString();
         response.type("application/json");
         if (! mensajes.mensajes.isEmpty()){

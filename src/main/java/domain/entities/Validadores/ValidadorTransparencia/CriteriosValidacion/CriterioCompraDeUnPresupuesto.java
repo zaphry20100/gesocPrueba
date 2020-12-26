@@ -13,7 +13,8 @@ public class CriterioCompraDeUnPresupuesto extends CriteriosValidacion {
         super.checkeoExcepciones(egreso, config);
         List<Presupuesto> presupuestos = egreso.getListaPresupuestos();
         if(egreso.getPresupuestoElegido() == null){
-            throw new Exception("no te puedo reiterar lo idiota que sos si ya me venis poniendo mil cosas mal no lo puedo creer. No te das cuenta que no hay un presupuesto elegido en egreso? dios u disgust me");
+            //throw new Exception("no te puedo reiterar lo idiota que sos si ya me venis poniendo mil cosas mal no lo puedo creer. No te das cuenta que no hay un presupuesto elegido en egreso? dios u disgust me");
+            throw new Exception("El egreso se realizo sin presupuesto");
         }
         boolean loContiene = presupuestos.stream().anyMatch(x -> (x.getIdPresupuesto() == egreso.getPresupuestoElegido().getIdPresupuesto()));
         System.out.println("Estado: " + loContiene);

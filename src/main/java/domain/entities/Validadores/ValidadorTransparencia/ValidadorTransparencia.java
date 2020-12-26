@@ -1,5 +1,6 @@
 package domain.entities.Validadores.ValidadorTransparencia;
 
+import domain.controllers.ValidadorTrasparenciaRestController;
 import domain.entities.Models.Entidades.ConfiguracionEntidadJuridica;
 import domain.entities.Models.Transacciones.Egreso;
 import domain.entities.Validadores.ValidadorTransparencia.CriteriosValidacion.CriteriosValidacion;
@@ -53,17 +54,20 @@ public class ValidadorTransparencia{
 
         boolean resultado = false;
 
+        setConfig(egreso.getEntidadJuridica().getConfiguracionEntidadJuridica());
+        setListaCriterios();
+
         resultado = ValidadorTransparencia.listaCriterios.stream().allMatch(x -> {
 
             try {
-                boolean validacion = x.validar(egreso, config);
-                if(!validacion){
-                    detalleResultado[0] = "No amigo, asi no...";
-                }
-                return validacion;
+                    boolean validacion = x.validar(egreso, config);
+                    if(!validacion){
+                        detalleResultado[0] = "El egreso " + egreso.getIdEgreso() + " no tuvo una validación satistfactoria";
+                    }
+                    return validacion;
             } catch (Exception e) {
-                System.out.println("Nope :( Exception");
-                detalleResultado[0] = e.getMessage(); //ya veremos
+                    System.out.println("Nope :( Exception");
+                    detalleResultado[0] = e.getMessage(); //ya veremos
             }
             return false;
         });
@@ -81,6 +85,7 @@ public class ValidadorTransparencia{
         FactoryRepositorio.get(Egreso.class).modificar(egreso);
 
         return resultadoValidacion.toString();
+
     }
 
     public static int resultadosLength(){

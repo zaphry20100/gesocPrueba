@@ -2,6 +2,7 @@ package domain.entities.Models.Transacciones;
 
 import com.fasterxml.jackson.annotation.*;
 import domain.entities.Models.Direccion.Direccion;
+import domain.entities.Models.Entidades.EntidadJuridica;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -29,6 +30,11 @@ public class Proveedor {
     @OneToOne
     @JoinColumn(name = "idDireccion")
     private Direccion direccion;
+
+    @JsonIdentityReference(alwaysAsId = true)
+    @ManyToOne
+    @JoinColumn(name = "idEntidadJuridica", referencedColumnName = "idEntidadJuridica")
+    private EntidadJuridica entidadJuridica;
 
     @JsonIdentityReference(alwaysAsId = true)
     @OneToMany(mappedBy = "proveedor", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
@@ -84,5 +90,14 @@ public class Proveedor {
 
     public void setIdProveedor(int idProveedor) {
         this.idProveedor = idProveedor;
+    }
+
+
+    public EntidadJuridica getEntidadJuridica() {
+        return entidadJuridica;
+    }
+
+    public void setEntidadJuridica(EntidadJuridica entidadJuridica) {
+        this.entidadJuridica = entidadJuridica;
     }
 }

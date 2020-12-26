@@ -19,25 +19,31 @@ import java.util.concurrent.Callable;
 
 public class JobTick implements Job {
 
+    private ValidadorTransparencia validadorTransparencia;
+
     public void execute(JobExecutionContext arg0) throws JobExecutionException {
         //System.out.println("This is the job A");
 
 
+        if(validadorTransparencia==null){
+            validadorTransparencia = new ValidadorTransparencia();
+        }
+        
         System.out.println("Se esta validado por scheduler.");
 
-
-
-//        List<EntidadJuridica> entidadesJuridicas = FactoryRepositorio.get(EntidadJuridica.class).buscarTodos();
-//        entidadesJuridicas.forEach(x -> {
-//                System.out.println("Ent Jur: "+x.getIdEntidadJuridica());
-//            ValidadorTransparencia.setConfig(x.getConfiguracionEntidadJuridica());
-//            for(Egreso egreso: x.getTodosLosEgresos()){
-//                if(!egreso.isValidado()) {
-//                    //ValidadorTransparencia.validar(egreso);
-//                    System.out.println("Egreso " + egreso.getIdEgreso() + " fue validado.");
-//                }
-//            }
-        //});
+        List<EntidadJuridica> entidadesJuridicas = FactoryRepositorio.get(EntidadJuridica.class).buscarTodos();
+        entidadesJuridicas.forEach(x -> {
+            x.quitarRepetidos();
+            x.getTodosLosEgresos().forEach(y->y.quitarRepetidos());
+            System.out.println("Ent Jur: "+x.getIdEntidadJuridica());
+            //validadorTransparencia.setConfig(x.getConfiguracionEntidadJuridica());
+            for(Egreso egreso: x.getTodosLosEgresos()){
+                if(!egreso.isValidado()) {
+                    egreso.validar();
+                    System.out.println("Egreso " + egreso.getIdEgreso() + " fue validado.");
+                }
+            }
+        });
 
         System.out.println("Fin validacion por scheduler.");
 
