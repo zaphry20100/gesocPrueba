@@ -45,6 +45,9 @@ public class EgresosRestController{
             revisor.setEgreso(egreso);
             revisor.setUsuario(x);
             FactoryRepositorio.get(Revisor.class).agregar(revisor);
+
+            egreso.getRevisores().add(revisor);
+            FactoryRepositorio.get(Egreso.class).modificar(egreso);
         });
 
         response.type("application/json");
