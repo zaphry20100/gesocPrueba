@@ -16,8 +16,8 @@ public class Router {
         //Spark.before((rq, rp) -> rp.header("Access-Control-Allow-Origin", "*"));
         //Spark.before((rq, rp) -> rp.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept"));
 
-
         Router.configure();
+
     }
 
     private static void configure() {
@@ -114,6 +114,7 @@ public class Router {
         Spark.get("/gesoc/mensaje/:idBandeja/:id", mensajesRestController::mostrar);                           //
         Spark.get("/gesoc/mensaje/:idBandeja", mensajesRestController::mostrarTodos);                          //
         Spark.get("/gesoc/leerMensajes/:idUser", mensajesRestController::mostrarMensajes);                      //
+        Spark.post("/gesoc/marcarLeidos/:idUser", mensajesRestController::marcarLeidos);
         Spark.get("/gesoc/mandarMensajes/:idUser", mensajesRestController::crearMensajes);                      //
 
         UsuarioRestController usuarioRestController = new UsuarioRestController();
