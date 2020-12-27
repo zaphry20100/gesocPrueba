@@ -122,7 +122,7 @@ public class EgresosRestController{
                 x.getIdsUsuariosRevisores().add(z.getUsuario().getIdUsuario());
             });
 
-
+            x.quitarRepetidos();
 
         });
 

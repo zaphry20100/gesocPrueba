@@ -20,19 +20,27 @@ public class ValidadorTrasparenciaRestController {
 
     JSONHelper jsonHelper = new JSONHelper();
 
+    private ValidadorTransparencia validadorTransparencia;
+
+
     public String ejecutarValidacion(Request request, Response response){
+
+        if(validadorTransparencia==null){
+            validadorTransparencia = new ValidadorTransparencia();
+        }
+
         List<Egreso> egresos = new ArrayList<>();
         EntidadJuridica entidadJuridica;
         if(request.params("id") != null){
             Egreso egreso = FactoryRepositorio.get(Egreso.class).buscar(new Integer(request.params("id")));
             egresos.add(egreso);
-            ValidadorTransparencia.setConfig(egreso.getEntidadJuridica().getConfiguracionEntidadJuridica());
+            validadorTransparencia.setConfig(egreso.getEntidadJuridica().getConfiguracionEntidadJuridica());
             entidadJuridica = egreso.getEntidadJuridica();
         }else{
             entidadJuridica = FactoryRepositorio.get(EntidadJuridica.class).buscar(new Integer(request.params("idEntJur")));
             entidadJuridica.setEgresos(entidadJuridica.getTodosLosEgresos().stream().distinct().collect(Collectors.toList()));
             egresos = entidadJuridica.getTodosLosEgresos();
-            ValidadorTransparencia.setConfig(entidadJuridica.getConfiguracionEntidadJuridica());
+            validadorTransparencia.setConfig(entidadJuridica.getConfiguracionEntidadJuridica());
         }
         List<Egreso> egresoNoValidados = egresos.stream().filter(x ->  ! x.isValidado() ).collect(Collectors.toList());
         System.out.println("Ent Jur a validar: " + entidadJuridica.getIdEntidadJuridica());
@@ -41,7 +49,7 @@ public class ValidadorTrasparenciaRestController {
         egresoNoValidados.forEach(x-> {
             System.out.println("EGreso: " + x.getIdEgreso());
             x.quitarRepetidos();
-            String mensaje = ValidadorTransparencia.validar(x);
+            String mensaje = validadorTransparencia.validar(x);
 
             //String mensaje = "asd";
             //x.setValidado(true);
