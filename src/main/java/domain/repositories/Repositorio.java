@@ -33,6 +33,10 @@ public class Repositorio<T> {
         return this.dao.buscarTodos();
     }
 
+    public List<T> buscarTodos(int id){
+        return this.dao.buscarTodos(id);
+    }
+
     public T buscar(int id){
         return this.dao.buscar(id);
     }

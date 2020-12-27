@@ -3,6 +3,7 @@ package domain.entities.Models.Transacciones;
 import com.fasterxml.jackson.annotation.*;
 import domain.entities.Models.Categorias.PresupuestoXCategoria;
 import domain.entities.Models.ContextAPI.RequestItemXPresupuesto;
+import domain.entities.Models.Entidades.EntidadJuridica;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -60,6 +61,11 @@ public class Presupuesto {
     @JoinColumn(name = "idProveedor", referencedColumnName = "idProveedor")
     private Proveedor proveedor;
 
+    @JsonIdentityReference(alwaysAsId = true)
+    @ManyToOne
+    @JoinColumn(name = "idEntidadJuridica", referencedColumnName = "idEntidadJuridica")
+    private EntidadJuridica entidadJuridica;
+
     @JsonIgnore
     @OneToMany(mappedBy = "presupuesto", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<PresupuestoXCategoria> intCategorias;
@@ -98,6 +104,15 @@ public class Presupuesto {
     public void setIdPresupuesto(int idPresupuesto) {
         this.idPresupuesto = idPresupuesto;
     }
+
+    public EntidadJuridica getEntidadJuridica() {
+        return entidadJuridica;
+    }
+
+    public void setEntidadJuridica(EntidadJuridica entidadJuridica) {
+        this.entidadJuridica = entidadJuridica;
+    }
+
 
     public Egreso getEgreso() {
         return egreso;

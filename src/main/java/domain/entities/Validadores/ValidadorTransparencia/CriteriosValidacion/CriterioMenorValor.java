@@ -15,15 +15,15 @@ public class CriterioMenorValor extends CriteriosValidacion{
         super.checkeoExcepciones(egreso,config);
         List<Presupuesto> presupuestos = egreso.getListaPresupuestos();
         if(egreso.getImporte() <= 0){
-            throw new Exception("nada que ver aca...... no fue ninguna coima ni nada de eso");
+            throw new Exception("El importe del presupuesto es invalido (negativo o nulo)");
         }
 
         for (Presupuesto presupuesto : presupuestos) {
             if (presupuesto.getImporte() <= 0) {
-                throw new Exception("..... de nuevo, nada que ver por aca en presupuesto de ID " + presupuesto.getIdPresupuesto());
+                throw new Exception("El presupuesto " + presupuesto.getIdPresupuesto() + " tiene importe del presupuesto es invalido (negativo o nulo)");
             }
             if(egreso.getPresupuestoElegido().getImporte() > presupuesto.getImporte()){
-                throw new Exception("papu, hermano, amigo del alma, no te das cuenta que tenias que elegir este presupuesto de ID " + presupuesto.getIdPresupuesto() + " con el importe de $" + presupuesto.getImporte()+ "??????????!!!!!!!!");
+                throw new Exception("El presupuesto elegido no es el de menor importe");
             }
         }
         System.out.println("Estado: true ");

@@ -1,12 +1,14 @@
 package domain.entities.Models.Transacciones;
 
 import com.fasterxml.jackson.annotation.*;
+import domain.entities.Models.BandejaMensaje.ServicioMensajes;
 import domain.entities.Models.Categorias.EgresoXCategoria;
 import domain.entities.Models.Entidades.EntidadJuridica;
 import domain.entities.Models.Usuarios.Revisor;
 import domain.entities.Models.Usuarios.Usuario;
 import domain.entities.Validadores.ValidadorTransparencia.ResultadoValidacion;
 //import domain.entities.Validadores.ValidadorTransparencia.ValidadorTransparencia;
+import domain.entities.Validadores.ValidadorTransparencia.ValidadorTransparencia;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -152,13 +154,13 @@ public class Egreso {//extends Operacion{
         this.quitarRepetidos();
 
     }
-/*
+
     public void validar(){
         String resultadoValidacion = ValidadorTransparencia.validar(this);
-        ServicioMensajes.mandarMensaje(resultadoValidacion, revisores);
+        ServicioMensajes.mandarMensaje(resultadoValidacion, this.getRevisores());
         validado =  resultadoValidacion.equals("Estimado usuario vengo a informarle el resultado del egreso " +  this.idEgreso +  " esto: " +"Todo piola");
     }
-*/
+
 
     public void quitarRepetidos(){
         listaPresupuestos               = listaPresupuestos.stream().distinct().collect(Collectors.toList());

@@ -22,6 +22,7 @@ public class PresupuestoRestController {
 
     public String crear(Request request, Response response){
         Presupuesto presupuesto = new Gson().fromJson(request.body(), Presupuesto.class);
+        System.out.println(request.body());
         FactoryRepositorio.get(Proveedor.class).agregar(presupuesto);
         this.crearRelaciones(presupuesto);
         response.type("application/json");
@@ -61,33 +62,33 @@ public class PresupuestoRestController {
 
     public String mostrarTodos(Request request, Response response) {
         int idEntidadJuridica = new Integer(request.params("idEntJur"));
-        List<Presupuesto> presupuestos = new ArrayList<>();
-        List<Egreso> egresos = FactoryRepositorio.get(Egreso.class).buscarTodos();
-        egresos = egresos.stream().filter(x -> x.getEntidadJuridica().getIdEntidadJuridica() == idEntidadJuridica).collect(Collectors.toList());
-        for(Egreso egreso:egresos){
-            egreso.quitarRepetidos();
-            for(Presupuesto presupuesto: egreso.getListaPresupuestos()){
-                presupuesto.quitarRepetidos();
-                presupuesto.getCategorias().forEach(z -> {
-                    presupuesto.getIdsCategorias().add(z.getCategoriaPresupuesto().getIdCategoriaPresupuesto());
-                });
 
+        List<Presupuesto> presupuestos = FactoryRepositorio.get(Presupuesto.class).buscarTodos();
+        //List<Presupuesto> presupuestos = FactoryRepositorio.get(Presupuesto.class).buscarTodos(idEntidadJuridica);
+
+        //presupuestos = presupuestos.stream().filter(x -> x.getEntidadJuridica().getIdEntidadJuridica() == idEntidadJuridica).collect(Collectors.toList());
+
+        presupuestos.stream().forEach(x-> x.quitarRepetidos());
+        presupuestos = presupuestos.stream().distinct().collect(Collectors.toList());
+
+
+        List<Presupuesto> presupuestosFiltrados = new ArrayList<>();
+
+        presupuestos.stream().forEach(x->{
+            int idEntJur = x.getEntidadJuridica().getIdEntidadJuridica();
+            if(idEntJur == idEntidadJuridica){
+                presupuestosFiltrados.add(x);
             }
-            presupuestos.addAll(egreso.getListaPresupuestos());
-        }
 
-        for (Presupuesto presupuesto:presupuestos){
-            presupuesto.quitarRepetidos();
-        }
-        String result = new JSONObject().toString();
+        });
+
         response.type("application/json");
-        if (! presupuestos.isEmpty()){
-            presupuestos.stream().forEach(x-> this.formatearObjectForJson(x));
-            result = jsonHelper.convertirAJson(presupuestos);
+        String result = new JSONObject().toString();
+        if (! presupuestosFiltrados.isEmpty()){
+            result = jsonHelper.convertirListaAJson(presupuestosFiltrados);
         }
         return result;
     }
-
 
     private void agregarCategoriaPresupuesto(Presupuesto presupuesto){
         presupuesto.getIdsCategorias().forEach(x -> {

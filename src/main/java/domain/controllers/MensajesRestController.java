@@ -67,15 +67,41 @@ public class MensajesRestController {
         return result;
     }
 
-    public String mostrarMensajes(Request request, Response response) {
+    public String marcarLeidos(Request request, Response response) {
+
         Usuario usuario = FactoryRepositorio.get(Usuario.class).buscar(new Integer(request.params("idUser")));
-        ResponseMensajes mensajes = usuario.getBandejaMensaje().leerMensajes();//FactoryRepositorio.get(Mensaje.class).buscarTodos();
+
+        List<Mensaje> mensajesList = FactoryRepositorio.get(Mensaje.class).buscarTodos();
+        mensajesList = mensajesList.stream().filter(x->x.getBandejamensaje().getIdbandejamensaje() == usuario.getBandejaMensaje().getIdbandejamensaje()).collect(Collectors.toList());
+
+        mensajesList.forEach(y-> {
+            y.setLeido(true);
+            FactoryRepositorio.get(Mensaje.class).modificar(y);
+        });
+
+        return new JSONObject().toString();
+
+    }
+
+    public String mostrarMensajes(Request request, Response response) {
+
+        Usuario usuario = FactoryRepositorio.get(Usuario.class).buscar(new Integer(request.params("idUser")));
+
+        List<Mensaje> mensajesList = FactoryRepositorio.get(Mensaje.class).buscarTodos();
+        mensajesList = mensajesList.stream().filter(x->x.getBandejamensaje().getIdbandejamensaje() == usuario.getBandejaMensaje().getIdbandejamensaje()).collect(Collectors.toList());
+
+        ResponseMensajes mensajes = new ResponseMensajes();
+        mensajes.mensajes = mensajesList;
+        mensajes.cantidadMensajesNuevos = mensajesList.stream().filter(x-> !x.isLeido() ).collect(Collectors.toList()).size();
         String result = new JSONObject().toString();
+
         response.type("application/json");
         if (! mensajes.mensajes.isEmpty()){
             result = jsonHelper.convertirAJson(mensajes);
         }
+
         return result;
+
     }
 
     public String crearMensajes(Request request, Response response) {
