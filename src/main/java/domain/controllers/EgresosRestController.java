@@ -76,6 +76,8 @@ public class EgresosRestController{
 
         agregarCriterioEgreso(egreso);
 
+        egreso.quitarRepetidos();
+
 
         String jsonObject = (egreso!=null) ? (jsonHelper.convertirAJson(egreso)):(new JSONObject().toString());
         response.type("application/json");
@@ -149,12 +151,16 @@ public class EgresosRestController{
             egresoXCategoria.setEgreso(egreso);
             FactoryRepositorio.get(EgresoXCategoria.class).agregar(egresoXCategoria);
         });
+
     }
 
     private void agregarCriterioEgreso(Egreso egreso){
         egreso.getCategoriaPresupuestos().forEach(x -> {
-            egreso.getCriterios().add(new RequestCriteriosEgreso(x.getCategoriaPresupuesto().getCriteriopresupuesto().getIdCriterioPresupuesto(), x.getCategoriaPresupuesto().getCriteriopresupuesto().getDescripcion()));
+            if(!egreso.getCriterios().stream().anyMatch(y -> y.idCriterioPresupuesto == x.getCategoriaPresupuesto().getCriteriopresupuesto().getIdCriterioPresupuesto())){
+                egreso.getCriterios().add(new RequestCriteriosEgreso(x.getCategoriaPresupuesto().getCriteriopresupuesto().getIdCriterioPresupuesto(), x.getCategoriaPresupuesto().getCriteriopresupuesto().getDescripcion()));
+            }
         });
+        
     }
 
 
