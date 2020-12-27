@@ -8,10 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import domain.entities.Models.Categorias.Categorias.CategoriaPresupuesto;
 import domain.entities.Models.Categorias.EgresoXCategoria;
-import domain.entities.Models.ContextAPI.RequestCategoriaEgreso;
-import domain.entities.Models.ContextAPI.RequestPresupuestos;
-import domain.entities.Models.ContextAPI.RequestRecategorizar;
-import domain.entities.Models.ContextAPI.RequestRevisores;
+import domain.entities.Models.ContextAPI.*;
 import domain.entities.Models.Entidades.ConfiguracionEntidadJuridica;
 import domain.entities.Models.Entidades.EntidadJuridica;
 import domain.entities.Models.Transacciones.*;
@@ -77,6 +74,8 @@ public class EgresosRestController{
             x.quitarRepetidos();
         });
 
+        agregarCriterioEgreso(egreso);
+
 
         String jsonObject = (egreso!=null) ? (jsonHelper.convertirAJson(egreso)):(new JSONObject().toString());
         response.type("application/json");
@@ -121,6 +120,7 @@ public class EgresosRestController{
             x.getRevisores().forEach( z -> {
                 x.getIdsUsuariosRevisores().add(z.getUsuario().getIdUsuario());
             });
+            agregarCriterioEgreso(x);
 
             x.quitarRepetidos();
 
@@ -148,6 +148,12 @@ public class EgresosRestController{
             egresoXCategoria.setCategoriaPresupuesto(FactoryRepositorio.get(CategoriaPresupuesto.class).buscar(x));
             egresoXCategoria.setEgreso(egreso);
             FactoryRepositorio.get(EgresoXCategoria.class).agregar(egresoXCategoria);
+        });
+    }
+
+    private void agregarCriterioEgreso(Egreso egreso){
+        egreso.getCategoriaPresupuestos().forEach(x -> {
+            egreso.getCriterios().add(new RequestCriteriosEgreso(x.getCategoriaPresupuesto().getCriteriopresupuesto().getIdCriterioPresupuesto(), x.getCategoriaPresupuesto().getCriteriopresupuesto().getDescripcion()));
         });
     }
 
