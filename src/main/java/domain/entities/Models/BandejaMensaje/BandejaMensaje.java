@@ -24,6 +24,14 @@ public class BandejaMensaje {
     @GeneratedValue
     private int idbandejamensaje;
 
+    public List<Filtro> getListaFiltros() {
+        return listaFiltros;
+    }
+
+    public void setListaFiltros(List<Filtro> listaFiltros) {
+        this.listaFiltros = listaFiltros;
+    }
+
     @OneToMany(mappedBy = "bandejamensaje", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Mensaje> mensajes;
 

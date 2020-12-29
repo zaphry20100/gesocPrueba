@@ -166,7 +166,7 @@ public class Router {
 
         ConfiguracionEntJuridicaController configEntJurController = new ConfiguracionEntJuridicaController();
         Spark.get("/gesoc/configuracionEntidadJuridica/:id", configEntJurController::mostrar);            //
-        //Spark.put("/gesoc/configuracionEntidadJuridica", configEntJurController::modificar);          //
+        Spark.put("/gesoc/configuracionEntidadJuridica", configEntJurController::modificar);          //
 
         CategoriaEntidadRestController categoriaEntidadRestController = new CategoriaEntidadRestController();
         Spark.post("/dev/categoriasEntidad", categoriaEntidadRestController::crearCategorias);

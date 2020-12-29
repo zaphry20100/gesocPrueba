@@ -3,9 +3,12 @@ package domain.controllers;
 import domain.entities.Models.BandejaMensaje.ServicioMensajes;
 import domain.entities.Models.Entidades.EntidadJuridica;
 import domain.entities.Models.Transacciones.Egreso;
+import domain.entities.Schedulers.JobTick;
 import domain.entities.Validadores.ValidadorTransparencia.ValidadorTransparencia;
 import domain.repositories.factories.FactoryRepositorio;
 import org.json.JSONObject;
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
 import spark.Request;
 import spark.Response;
 
@@ -16,17 +19,32 @@ import java.util.stream.Collectors;
 
 import static fj.function.Booleans.and;
 
+
+
 public class ValidadorTrasparenciaRestController {
 
     JSONHelper jsonHelper = new JSONHelper();
 
     private ValidadorTransparencia validadorTransparencia;
-
+    public static Scheduler sched;
 
     public String ejecutarValidacion(Request request, Response response){
 
         if(validadorTransparencia==null){
             validadorTransparencia = new ValidadorTransparencia();
+        }
+
+
+        SchedulerFactory schedFact = new StdSchedulerFactory();
+
+        try {
+            sched = schedFact.getScheduler();
+            JobDetail job = JobBuilder.newJob(JobTick.class).withIdentity("myJob", "group1").usingJobData("jobSays", "Hello World!").usingJobData("myFloatValue", 3.141f).build();
+            Trigger trigger = TriggerBuilder.newTrigger().withIdentity("myTrigger", "group1").startNow().withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInMinutes(10).repeatForever()).build();
+            sched.scheduleJob(job, trigger);
+            sched.start();
+        } catch (SchedulerException e) {
+            e.printStackTrace();
         }
 
         List<Egreso> egresos = new ArrayList<>();

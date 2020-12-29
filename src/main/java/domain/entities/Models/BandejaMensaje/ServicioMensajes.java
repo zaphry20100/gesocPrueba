@@ -16,6 +16,9 @@ public class ServicioMensajes {
                 //FactoryRepositorio.get(BandejaMensaje.class).modificar(revisor.getUsuario().getBandejaMensaje());
                 mensaje1.setBandejamensaje(revisor.getUsuario().getBandejaMensaje());
                 FactoryRepositorio.get(Mensaje.class).agregar(mensaje1);
+
+                revisor.getUsuario().getBandejaMensaje().agregarMensajes(mensaje1);
+                FactoryRepositorio.get(BandejaMensaje.class).modificar(revisor.getUsuario().getBandejaMensaje());
             }
         }
     }

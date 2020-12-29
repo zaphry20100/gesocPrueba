@@ -82,6 +82,7 @@ public class ValidadorTransparencia{
         FactoryRepositorio.get(ResultadoValidacion.class).agregar(resultadoValidacion);
 
         egreso.setValidado(resultado);
+        egreso.getResultadoValidacions().add(resultadoValidacion);
         FactoryRepositorio.get(Egreso.class).modificar(egreso);
 
         return resultadoValidacion.toString();

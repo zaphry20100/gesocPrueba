@@ -107,10 +107,18 @@ public class VinculadorController {
             System.out.println(ingreso.getIdIngreso());
 
             x.egresos.forEach(y->{
+                        Egreso egresoParcial = FactoryRepositorio.get(Egreso.class).buscar(y);
                         EgresoXIngreso egresoXIngreso = new EgresoXIngreso();
-                        egresoXIngreso.setEgreso(FactoryRepositorio.get(Egreso.class).buscar(y));
+                        egresoXIngreso.setEgreso(egresoParcial);
                         egresoXIngreso.setIngreso(ingreso);
                         FactoryRepositorio.get(EgresoXIngreso.class).agregar(egresoXIngreso);
+
+                        ingreso.getEgresoXIngreso().add(egresoXIngreso);
+                        FactoryRepositorio.get(Ingreso.class).modificar(ingreso);
+
+                        egresoParcial.getEgresoXIngreso().add(egresoXIngreso);
+                        FactoryRepositorio.get(Egreso.class).modificar(egresoParcial);
+
                     }
             );
 
@@ -121,14 +129,22 @@ public class VinculadorController {
             System.out.println(egreso.getIdEgreso());
 
             x.ingresos.forEach(y->{
+                        Ingreso ingresoParcial = FactoryRepositorio.get(Ingreso.class).buscar(y);
+
                         EgresoXIngreso egresoXIngreso = new EgresoXIngreso();
-                        egresoXIngreso.setIngreso(FactoryRepositorio.get(Ingreso.class).buscar(y));
+                        egresoXIngreso.setIngreso(ingresoParcial);
                         egresoXIngreso.setEgreso(egreso);
                         FactoryRepositorio.get(EgresoXIngreso.class).agregar(egresoXIngreso);
+
+                        ingresoParcial.getEgresoXIngreso().add(egresoXIngreso);
+                        FactoryRepositorio.get(Ingreso.class).modificar(ingresoParcial);
+
+                        egreso.getEgresoXIngreso().add(egresoXIngreso);
+                        FactoryRepositorio.get(Egreso.class).modificar(egreso);
+
                     }
             );
         });
-
 
         System.out.println(operacionSalida.toString());
     }

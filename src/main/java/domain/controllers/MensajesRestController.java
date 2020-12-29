@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -87,17 +88,23 @@ public class MensajesRestController {
 
         Usuario usuario = FactoryRepositorio.get(Usuario.class).buscar(new Integer(request.params("idUser")));
 
+        ResponseMensajes responseMensajes = new ResponseMensajes();
         List<Mensaje> mensajesList = FactoryRepositorio.get(Mensaje.class).buscarTodos();
-        mensajesList = mensajesList.stream().filter(x->x.getBandejamensaje().getIdbandejamensaje() == usuario.getBandejaMensaje().getIdbandejamensaje()).collect(Collectors.toList());
 
-        ResponseMensajes mensajes = new ResponseMensajes();
-        mensajes.mensajes = mensajesList;
-        mensajes.cantidadMensajesNuevos = mensajesList.stream().filter(x-> !x.isLeido() ).collect(Collectors.toList()).size();
+        if(mensajesList != null) {
+            mensajesList = mensajesList.stream().filter(x->x.getBandejamensaje().getIdbandejamensaje() == usuario.getBandejaMensaje().getIdbandejamensaje()).collect(Collectors.toList());
+        }else{
+            mensajesList = new ArrayList<>();
+        }
+
+        responseMensajes.mensajes = mensajesList;
+        responseMensajes.cantidadMensajesNuevos = mensajesList.stream().filter(x-> !x.isLeido() ).collect(Collectors.toList()).size();
+
         String result = new JSONObject().toString();
 
         response.type("application/json");
-        if (! mensajes.mensajes.isEmpty()){
-            result = jsonHelper.convertirAJson(mensajes);
+        if (! responseMensajes.mensajes.isEmpty()){
+            result = jsonHelper.convertirAJson(responseMensajes);
         }
 
         return result;
