@@ -83,8 +83,10 @@ public class CategoriaPresupuesto {
         this.presupuestos=this.presupuestos.stream().distinct().collect(Collectors.toList());
         this.egresos = this.egresos.stream().distinct().collect(Collectors.toList());
         this.ingreso = this.ingreso.stream().distinct().collect(Collectors.toList());
+
         this.categoriaXCriterios = this.categoriaXCriterios.stream().distinct().collect(Collectors.toList());
         this.categoriaXCriterios.stream().forEach(x-> this.criterios.add(x.getCriterioPresupuesto()));
+        this.criterios = this.criterios.stream().distinct().collect(Collectors.toList());
     }
 
     public int getIdCategoriaPresupuesto() {
