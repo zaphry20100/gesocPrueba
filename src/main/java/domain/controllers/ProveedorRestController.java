@@ -57,6 +57,7 @@ public class ProveedorRestController {
         List<Proveedor> proveedores = FactoryRepositorio.get(Proveedor.class).buscarTodos();
         proveedores = proveedores.stream().filter(x-> x.getEntidadJuridica().getIdEntidadJuridica() == new Integer(request.params("idEntJur"))).collect(Collectors.toList());
         String result = new JSONObject().toString();
+        proveedores.stream().forEach(x-> x.quitarRepetidos());
         response.type("application/json");
         if (! proveedores.isEmpty()){
             result = jsonHelper.convertirAJson(proveedores);

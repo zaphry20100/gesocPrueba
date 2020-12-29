@@ -113,18 +113,22 @@ public class EgresosRestController{
         //List<Egreso> egresosFiltrados = new ArrayList<>();
         //egresosFiltrados = egresos.stream().filter(x-> x.getEntidadJuridica().getIdEntidadJuridica() == Integer.parseInt(request.splat()[0])).collect(Collectors.toList());
         egresos.stream().forEach(x-> {
+
             x.getListaPresupuestos().stream().forEach(y->{
 
                 x.getPresupuestos().add(y.getIdPresupuesto());
             });
+
             x.setPresupuestos(x.getPresupuestos().stream().distinct().collect(Collectors.toList()));
 
             x.getCategoriaPresupuestos().forEach( z -> {
                 x.getIdsCategorias().add(z.getCategoriaPresupuesto().getIdCategoriaPresupuesto());
             });
+
             x.getRevisores().forEach( z -> {
                 x.getIdsUsuariosRevisores().add(z.getUsuario().getIdUsuario());
             });
+
             agregarCriterioEgreso(x);
 
             x.quitarRepetidos();
@@ -158,12 +162,21 @@ public class EgresosRestController{
     }
 
     private void agregarCriterioEgreso(Egreso egreso){
-        egreso.getCategoriaPresupuestos().forEach(x -> {
-            if(!egreso.getCriterios().stream().anyMatch(y -> y.idCriterioPresupuesto == x.getCategoriaPresupuesto().getCriteriopresupuesto().getIdCriterioPresupuesto())){
-                egreso.getCriterios().add(new RequestCriteriosEgreso(x.getCategoriaPresupuesto().getCriteriopresupuesto().getIdCriterioPresupuesto(), x.getCategoriaPresupuesto().getCriteriopresupuesto().getDescripcion()));
+//        egreso.getCategoriaPresupuestos().forEach(x -> {
+////            if(!egreso.getCriterios().stream().anyMatch(y -> y.idCriterioPresupuesto == x.getCategoriaPresupuesto().getCriteriopresupuesto().getIdCriterioPresupuesto())){
+////                egreso.getCriterios().add(new RequestCriteriosEgreso(x.getCategoriaPresupuesto().getCriteriopresupuesto().getIdCriterioPresupuesto(), x.getCategoriaPresupuesto().getCriteriopresupuesto().getDescripcion()));
+////            }
+////        });
+
+        egreso.getCategoriaPresupuestos().stream().forEach(x-> {
+            x.getCategoriaPresupuesto().quitarRepetidos();
+            if (x.getCategoriaPresupuesto().getCriterios() != null) {
+                x.getCategoriaPresupuesto().getCriterios().stream().forEach(y -> {
+                    egreso.getCriterios().add(new RequestCriteriosEgreso(y.getIdCriterioPresupuesto(), y.getDescripcion()));
+                });
             }
         });
-        
+
     }
 
 

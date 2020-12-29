@@ -7,6 +7,7 @@ import domain.entities.Models.Entidades.EntidadJuridica;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idProveedor")
 @Entity
@@ -45,7 +46,14 @@ public class Proveedor {
     private List<Presupuesto> presupuestos;
 
     public Proveedor() {
+
         egresos = new ArrayList<>();
+        presupuestos = new ArrayList<>();
+    }
+
+    public void quitarRepetidos(){
+        egresos = egresos.stream().distinct().collect(Collectors.toList());
+        presupuestos = presupuestos.stream().collect(Collectors.toList());
     }
 
     public void darBaja(){

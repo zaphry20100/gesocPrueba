@@ -1,6 +1,7 @@
 package domain.entities.Models.Categorias.Criterios;
 
 import com.fasterxml.jackson.annotation.*;
+import domain.controllers.CategoriaXCriterio;
 import domain.entities.Models.Categorias.Categorias.CategoriaPresupuesto;
 import domain.entities.Models.Entidades.EntidadJuridica;
 
@@ -21,6 +22,7 @@ public class CriterioPresupuesto {
     @Column (name = "descripcion")
     private String descripcion;
 
+    @JsonIgnore
     @Column (name = "estado")
     private boolean estado = true;
 
@@ -38,9 +40,17 @@ public class CriterioPresupuesto {
     @JoinColumn(name = "idEntidadJuridica", referencedColumnName = "idEntidadJuridica")
     private EntidadJuridica entidadjuridica;
 
-    @JsonIdentityReference(alwaysAsId = true)
+    @JsonIgnore
     @OneToMany(mappedBy = "criteriopresupuesto", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<CategoriaPresupuesto> categoriapresupuestos;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "categoriapresupuesto", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER  )
+    private List<CategoriaXCriterio> categoriaXCriterios;
+
+    @JsonIgnore
+    @Transient
+    private List<CategoriaPresupuesto> categorias;
 
     //@JsonIdentityReference(alwaysAsId = true)
     //@OneToMany(mappedBy = "criterioPadre", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, orphanRemoval=true)
@@ -49,6 +59,8 @@ public class CriterioPresupuesto {
     public CriterioPresupuesto() {
         categoriapresupuestos = new ArrayList<>();
         //criteriosHijos = new ArrayList<>();
+        categoriaXCriterios = new ArrayList<>();
+        categorias = new ArrayList<>();
     }
 
     public void quitarRepetidos(){
@@ -56,6 +68,7 @@ public class CriterioPresupuesto {
         for(CategoriaPresupuesto categoriaPresupuesto:categoriapresupuestos){
             categoriaPresupuesto.quitarRepetidos();
         }
+        categoriaXCriterios = categoriaXCriterios.stream().distinct().collect(Collectors.toList());
     }
 
     public int getIdCriterioPresupuesto() {

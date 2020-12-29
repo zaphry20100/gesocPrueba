@@ -29,6 +29,16 @@ public class CategoriasRestController {
     public String crear(Request request, Response response){
         CategoriaPresupuesto categoriaPresupuesto = new Gson().fromJson(request.body(), CategoriaPresupuesto.class);
         FactoryRepositorio.get(CategoriaPresupuesto.class).agregar(categoriaPresupuesto);
+
+        categoriaPresupuesto.getCriterios().stream().forEach(x->{
+            CategoriaXCriterio categoriaXCriterio = new CategoriaXCriterio();
+            categoriaXCriterio.setCategoriaPresupuesto(categoriaPresupuesto);
+            categoriaXCriterio.setCriterioPresupuesto(x);
+            FactoryRepositorio.get(CategoriaXCriterio.class).agregar(categoriaXCriterio);
+
+            categoriaPresupuesto.getCategoriaXCriterios().add(categoriaXCriterio);
+            FactoryRepositorio.get(CategoriaPresupuesto.class).modificar(categoriaPresupuesto);
+        });
         this.crearRelaciones(categoriaPresupuesto);
         response.type("application/json");
         return new JSONObject().put("id", categoriaPresupuesto.getIdCategoriaPresupuesto()).toString();

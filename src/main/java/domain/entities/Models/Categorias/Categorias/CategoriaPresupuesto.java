@@ -1,6 +1,7 @@
 package domain.entities.Models.Categorias.Categorias;
 
 import com.fasterxml.jackson.annotation.*;
+import domain.controllers.CategoriaXCriterio;
 import domain.entities.Models.Categorias.Criterios.CriterioPresupuesto;
 import domain.entities.Models.Categorias.IngresoXCategoria;
 import domain.entities.Models.Categorias.EgresoXCategoria;
@@ -27,6 +28,7 @@ public class CategoriaPresupuesto {
     @Column (name = "descripcion")
     private String descripcion;
 
+    @JsonIgnore
     @Column (name = "estado")
     private boolean estado = true;
 
@@ -35,7 +37,7 @@ public class CategoriaPresupuesto {
     @JoinColumn(name = "idEgreso", referencedColumnName = "idEgreso")
     private Egreso egreso;*/
 
-    @JsonIdentityReference(alwaysAsId = true)
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idcriteriopresupuesto", referencedColumnName = "idcriteriopresupuesto")
     private CriterioPresupuesto criteriopresupuesto;
@@ -57,10 +59,20 @@ public class CategoriaPresupuesto {
     @OneToMany(mappedBy = "categoriapresupuesto", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER  )
     private List<IngresoXCategoria> ingreso;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "categoriapresupuesto", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER  )
+    private List<CategoriaXCriterio> categoriaXCriterios;
+
+    @JsonIdentityReference(alwaysAsId = true)
+    @Transient
+    private List<CriterioPresupuesto> criterios;
+
     public CategoriaPresupuesto() {
         this.presupuestos = new ArrayList<>();
         this.egresos = new ArrayList<>();
         this.ingreso = new ArrayList<>();
+        this.categoriaXCriterios = new ArrayList<>();
+        this.criterios = new ArrayList<>();
     }
 
     public void darBaja(){
@@ -71,6 +83,8 @@ public class CategoriaPresupuesto {
         this.presupuestos=this.presupuestos.stream().distinct().collect(Collectors.toList());
         this.egresos = this.egresos.stream().distinct().collect(Collectors.toList());
         this.ingreso = this.ingreso.stream().distinct().collect(Collectors.toList());
+        this.categoriaXCriterios = this.categoriaXCriterios.stream().distinct().collect(Collectors.toList());
+        this.categoriaXCriterios.stream().forEach(x-> this.criterios.add(x.getCriterioPresupuesto()));
     }
 
     public int getIdCategoriaPresupuesto() {
@@ -127,5 +141,21 @@ public class CategoriaPresupuesto {
 
     public void setIngreso(List<IngresoXCategoria> ingreso) {
         this.ingreso = ingreso;
+    }
+
+    public List<CategoriaXCriterio> getCategoriaXCriterios() {
+        return categoriaXCriterios;
+    }
+
+    public void setCategoriaXCriterios(List<CategoriaXCriterio> categoriaXCriterios) {
+        this.categoriaXCriterios = categoriaXCriterios;
+    }
+
+    public List<CriterioPresupuesto> getCriterios() {
+        return criterios;
+    }
+
+    public void setCriterios(List<CriterioPresupuesto> criterios) {
+        this.criterios = criterios;
     }
 }

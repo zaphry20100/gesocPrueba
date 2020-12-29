@@ -2,6 +2,7 @@ package domain.entities.Models.Transacciones;
 
 import com.fasterxml.jackson.annotation.*;
 import domain.entities.Models.BandejaMensaje.ServicioMensajes;
+import domain.entities.Models.Categorias.Criterios.CriterioPresupuesto;
 import domain.entities.Models.Categorias.EgresoXCategoria;
 import domain.entities.Models.ContextAPI.RequestCriteriosEgreso;
 import domain.entities.Models.Entidades.EntidadJuridica;
@@ -107,10 +108,17 @@ public class Egreso {//extends Operacion{
     @Transient
     List<Integer> categorias;
 
+    public List<RequestCriteriosEgreso> getCriterios() {
+        return criterios;
+    }
 
+    public void setCriterios(List<RequestCriteriosEgreso> criterios) {
+        this.criterios = criterios;
+    }
 
     @Transient
     List<RequestCriteriosEgreso> criterios;
+
 
     @Transient
     List<Integer> revisores;
@@ -213,13 +221,7 @@ public class Egreso {//extends Operacion{
         this.validado = validado;
     }
 
-    public List<RequestCriteriosEgreso> getCriterios() {
-        return criterios;
-    }
 
-    public void setCriterios(List<RequestCriteriosEgreso> criterios) {
-        this.criterios = criterios;
-    }
 
     public LocalDate getFechaEgreso() {
         return fechaEgreso;
