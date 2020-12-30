@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import domain.entities.Models.Categorias.Categorias.CategoriaPresupuesto;
+import domain.entities.Models.Categorias.Criterios.CriterioPresupuesto;
 import domain.entities.Models.Categorias.EgresoXCategoria;
 import domain.entities.Models.ContextAPI.*;
 import domain.entities.Models.Entidades.ConfiguracionEntidadJuridica;
@@ -153,10 +154,21 @@ public class EgresosRestController{
 
     private void agregarCategoriaEgreso(Egreso egreso){
         egreso.getIdsCategorias().forEach(x -> {
+
+
+
+            CategoriaPresupuesto cat = FactoryRepositorio.get(CategoriaPresupuesto.class).buscar(x);
+
             EgresoXCategoria egresoXCategoria = new EgresoXCategoria();
-            egresoXCategoria.setCategoriaPresupuesto(FactoryRepositorio.get(CategoriaPresupuesto.class).buscar(x));
+            egresoXCategoria.setCategoriaPresupuesto(cat);
             egresoXCategoria.setEgreso(egreso);
             FactoryRepositorio.get(EgresoXCategoria.class).agregar(egresoXCategoria);
+
+            cat.getEgresos().add(egresoXCategoria);
+            FactoryRepositorio.get(CategoriaPresupuesto.class).modificar(cat);
+
+            egreso.getCategoriaPresupuestos().add(egresoXCategoria);
+
         });
 
     }
@@ -168,16 +180,20 @@ public class EgresosRestController{
 ////            }
 ////        });
 
+        //egreso.setCriterios(new ArrayList<>());
+        egreso.setCategoriaPresupuestos(egreso.getCategoriaPresupuestos().stream().distinct().collect(Collectors.toList()));
         egreso.getCategoriaPresupuestos().stream().forEach(x-> {
             x.getCategoriaPresupuesto().quitarRepetidos();
             if (x.getCategoriaPresupuesto().getCategoriaXCriterios().size()>0) {
                 x.getCategoriaPresupuesto().getCategoriaXCriterios().stream().forEach(y -> {
                     y.getCriterioPresupuesto().quitarRepetidos();
-                    egreso.getCriterios().add(new RequestCriteriosEgreso(y.getCriterioPresupuesto().getIdCriterioPresupuesto(), y.getCriterioPresupuesto().getDescripcion()));
+                    if(!egreso.getCriterios().stream().anyMatch(w->w.idCriterioPresupuesto == y.getCriterioPresupuesto().getIdCriterioPresupuesto())) {
+                        egreso.getCriterios().add(new RequestCriteriosEgreso(y.getCriterioPresupuesto().getIdCriterioPresupuesto(), y.getCriterioPresupuesto().getDescripcion()));
+                    }
                 });
             }
         });
-
+        //FactoryRepositorio.get(Egreso.class).modificar(egreso);
     }
 
 
@@ -205,8 +221,12 @@ public class EgresosRestController{
             FactoryRepositorio.get(Egresoxitem.class).agregar(egresoxitem);
         });
 
+
+
         //Crear tabla intermedia de Categoria x Egreso
         agregarCategoriaEgreso(egreso);
+
+        //agregarCriterioEgreso(egreso);
 
         // --------------- MODIFICAR ------------------
         FactoryRepositorio.get(Egreso.class).modificar(egreso);
