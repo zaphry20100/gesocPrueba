@@ -188,7 +188,8 @@ public class EgresosRestController{
                 x.getCategoriaPresupuesto().getCategoriaXCriterios().stream().forEach(y -> {
                     y.getCriterioPresupuesto().quitarRepetidos();
                     if(!egreso.getCriterios().stream().anyMatch(w->w.idCriterioPresupuesto == y.getCriterioPresupuesto().getIdCriterioPresupuesto())) {
-                        egreso.getCriterios().add(new RequestCriteriosEgreso(y.getCriterioPresupuesto().getIdCriterioPresupuesto(), y.getCriterioPresupuesto().getDescripcion()));
+                        CriterioPresupuesto crit = FactoryRepositorio.get(CriterioPresupuesto.class).buscar(y.getCriterioPresupuesto().getIdCriterioPresupuesto());
+                        egreso.getCriterios().add(new RequestCriteriosEgreso(crit.getIdCriterioPresupuesto(), crit.getDescripcion()));
                     }
                 });
             }
