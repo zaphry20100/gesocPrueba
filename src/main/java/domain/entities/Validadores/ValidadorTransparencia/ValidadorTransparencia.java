@@ -50,7 +50,7 @@ public class ValidadorTransparencia{
 
 
     public static String validar(Egreso egreso) {
-        final String[] detalleResultado = {"Todo piola"};
+        final String[] detalleResultado = {"Todo OK"};
 
         boolean resultado = false;
 
