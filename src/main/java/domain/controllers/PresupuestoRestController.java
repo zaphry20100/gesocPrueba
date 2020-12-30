@@ -82,6 +82,38 @@ public class PresupuestoRestController {
 
         });
 
+
+        response.type("application/json");
+        String result = new JSONObject().toString();
+        if (! presupuestosFiltrados.isEmpty()){
+            result = jsonHelper.convertirListaAJson(presupuestosFiltrados);
+        }
+        return result;
+    }
+
+    public String mostrarTodosFiltrado(Request request, Response response) {
+        int idEntidadJuridica = new Integer(request.params("idEntJur"));
+
+        List<Presupuesto> presupuestos = FactoryRepositorio.get(Presupuesto.class).buscarTodos();
+        //List<Presupuesto> presupuestos = FactoryRepositorio.get(Presupuesto.class).buscarTodos(idEntidadJuridica);
+
+        //presupuestos = presupuestos.stream().filter(x -> x.getEntidadJuridica().getIdEntidadJuridica() == idEntidadJuridica).collect(Collectors.toList());
+
+        presupuestos.stream().forEach(x-> x.quitarRepetidos());
+        presupuestos = presupuestos.stream().distinct().collect(Collectors.toList());
+
+
+        List<Presupuesto> presupuestosFiltrados = new ArrayList<>();
+
+        presupuestos.stream().forEach(x->{
+            int idEntJur = x.getEntidadJuridica().getIdEntidadJuridica();
+            if(idEntJur == idEntidadJuridica){
+                if(x.getEgreso() == null){
+                    presupuestosFiltrados.add(x);
+                }
+            }
+        });
+
         response.type("application/json");
         String result = new JSONObject().toString();
         if (! presupuestosFiltrados.isEmpty()){

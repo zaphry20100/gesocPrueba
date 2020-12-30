@@ -228,6 +228,7 @@ public class EgresosRestController{
 
         //agregarCriterioEgreso(egreso);
 
+
         // --------------- MODIFICAR ------------------
         FactoryRepositorio.get(Egreso.class).modificar(egreso);
         FactoryRepositorio.get(Presupuesto.class).modificar(presupuestoElegido);

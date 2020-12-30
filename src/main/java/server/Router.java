@@ -89,6 +89,7 @@ public class Router {
         //Spark.options("/gesoc/presupuesto/:idEntJur/:id", presupuestoRestController::existe);               //
         Spark.get("/gesoc/presupuesto/:idEntJur/:id", presupuestoRestController::mostrar);                  //
         Spark.get("/gesoc/presupuesto/:idEntJur", presupuestoRestController::mostrarTodos);                 //
+        Spark.get("/gesoc/presupuestoFiltrado/:idEntJur", presupuestoRestController::mostrarTodosFiltrado);
 
         ItemRestController itemRestController = new ItemRestController();
         Spark.post("/gesoc/item/:idEntJur", itemRestController::crear);                                               //
