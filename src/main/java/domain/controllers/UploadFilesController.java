@@ -135,7 +135,12 @@ public class UploadFilesController {
             Path out = Paths.get(nombreArchivo + "." + tipoArchivo);
 
             try (final InputStream in = uploadedFile.getInputStream()) {
-                Files.copy(in, out);
+                File fileTemp = new File(out.toString());
+
+                    fileTemp.delete();
+                    Files.copy(in, out);
+
+
                 uploadedFile.delete();
             } catch (IOException e) {
                 e.printStackTrace();
