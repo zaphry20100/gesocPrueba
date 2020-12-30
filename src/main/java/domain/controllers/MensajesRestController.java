@@ -16,6 +16,7 @@ import spark.Response;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class MensajesRestController {
@@ -90,14 +91,17 @@ public class MensajesRestController {
 
         ResponseMensajes responseMensajes = new ResponseMensajes();
         List<Mensaje> mensajesList = FactoryRepositorio.get(Mensaje.class).buscarTodos();
+        List<Mensaje> msjs = new ArrayList<>();
 
-        if(mensajesList != null) {
-            mensajesList = mensajesList.stream().filter(x->x.getBandejamensaje().getIdbandejamensaje() == usuario.getBandejaMensaje().getIdbandejamensaje()).collect(Collectors.toList());
-        }else{
-            mensajesList = new ArrayList<>();
+        if(Objects.nonNull(mensajesList)) {
+            mensajesList.stream().forEach(x->{
+                if(x.getBandejamensaje().getIdbandejamensaje() == usuario.getBandejaMensaje().getIdbandejamensaje()){
+                    msjs.add(x);
+                }
+            });
         }
 
-        responseMensajes.mensajes = mensajesList;
+        responseMensajes.mensajes = msjs;
         responseMensajes.cantidadMensajesNuevos = mensajesList.stream().filter(x-> !x.isLeido() ).collect(Collectors.toList()).size();
 
         String result = new JSONObject().toString();

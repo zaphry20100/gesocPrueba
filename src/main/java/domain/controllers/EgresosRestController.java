@@ -170,9 +170,10 @@ public class EgresosRestController{
 
         egreso.getCategoriaPresupuestos().stream().forEach(x-> {
             x.getCategoriaPresupuesto().quitarRepetidos();
-            if (x.getCategoriaPresupuesto().getCriterios() != null) {
-                x.getCategoriaPresupuesto().getCriterios().stream().forEach(y -> {
-                    egreso.getCriterios().add(new RequestCriteriosEgreso(y.getIdCriterioPresupuesto(), y.getDescripcion()));
+            if (x.getCategoriaPresupuesto().getCategoriaXCriterios().size()>0) {
+                x.getCategoriaPresupuesto().getCategoriaXCriterios().stream().forEach(y -> {
+                    y.getCriterioPresupuesto().quitarRepetidos();
+                    egreso.getCriterios().add(new RequestCriteriosEgreso(y.getCriterioPresupuesto().getIdCriterioPresupuesto(), y.getCriterioPresupuesto().getDescripcion()));
                 });
             }
         });
@@ -181,7 +182,6 @@ public class EgresosRestController{
 
 
     private void crearRelaciones(Egreso egreso) {
-
         //Asignar lista de presupuestoss
         egreso.getPresupuestos().stream().forEach(x->{
             Presupuesto presupuestoX = FactoryRepositorio.get(Presupuesto.class).buscar(x);
